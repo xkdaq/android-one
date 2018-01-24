@@ -55,7 +55,7 @@ public abstract class BaseCompatActivity extends SupportActivity {
     }
 
     private void init(Bundle savedInstanceState) {
-        setTheme(ThemeUtils.themeArr[SpUtils.getThemeIndex(this)][SpUtils.getNightModel(this) ? 1 : 0]);
+        //setTheme(ThemeUtils.themeArr[SpUtils.getThemeIndex(this)][SpUtils.getNightModel(this) ? 1 : 0]);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
         StatusBarUtils.setTransparent(this);
