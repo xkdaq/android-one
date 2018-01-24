@@ -5,6 +5,7 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
+import com.mob.MobSDK;
 import com.zyw.horrarndoo.sdk.global.GlobalApplication;
 
 /**
@@ -24,6 +25,7 @@ public class MyApplication extends GlobalApplication {
         app = this;
         //初始化屏幕宽高
         getScreenSize();
+        MobSDK.init(this);
     }
 
     public void getScreenSize() {

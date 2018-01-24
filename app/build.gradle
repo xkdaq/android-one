@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: "com.mob.sdk"
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -18,6 +19,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+MobSDK {
+    appKey "23ebd2c2eb09c"
+    appSecret "bc52ffd671306b90ba69073b738b3184"
+
+    SMSSDK {}
 }
 
 dependencies {
