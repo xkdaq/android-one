@@ -67,4 +67,7 @@ dependencies {
 
     // 沉浸式状态栏
     api "com.gyf.barlibrary:barlibrary:$rootProject.barVersion"
+
+    //BaseRecyclerViewAdapterHelper
+    compile "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.BaseRecyclerViewAdapterHelperVersion"
 }

@@ -8,6 +8,10 @@ import com.xuke.andoirdone.R;
 import com.xuke.andoirdone.view.fragment.my.child.MyFragment;
 import com.zyw.horrarndoo.sdk.base.fragment.BaseCompatFragment;
 
+/**
+ * Created by xuke on 2018/1/23.
+ */
+
 public class MyRootFragment extends BaseCompatFragment {
 
     public static MyRootFragment newInstance() {

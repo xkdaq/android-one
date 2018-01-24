@@ -8,6 +8,9 @@ import com.xuke.andoirdone.R;
 import com.xuke.andoirdone.view.fragment.movie.child.MovieFragment;
 import com.zyw.horrarndoo.sdk.base.fragment.BaseCompatFragment;
 
+/**
+ * Created by xuke on 2018/1/23.
+ */
 public class MovieRootFragment extends BaseCompatFragment {
 
     public static MovieRootFragment newInstance() {

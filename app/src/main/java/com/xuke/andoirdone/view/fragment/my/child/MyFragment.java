@@ -10,6 +10,10 @@ import com.xuke.andoirdone.R;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.base.fragment.BaseMVPCompatFragment;
 
+/**
+ * Created by xuke on 2018/1/23.
+ */
+
 public class MyFragment extends BaseMVPCompatFragment{
 
     public static MyFragment newInstance() {
