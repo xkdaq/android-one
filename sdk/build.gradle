@@ -56,12 +56,15 @@ dependencies {
     api "com.github.bumptech.glide:okhttp-integration:$rootProject.glideokhttpVersion"
     api "jp.wasabeef:glide-transformations:$rootProject.glideTransformationVersion"
 
-    //Butterknife'
+    // Butterknife'
     api "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
 
-    //fragmentation
+    // fragmentation
     api "me.yokeyword:fragmentation:$rootProject.fragmentationVersion"
 
-    //Logger
+    // Logger
     api "com.orhanobut:logger:$rootProject.loggerVersion"
+
+    // 沉浸式状态栏
+    api "com.gyf.barlibrary:barlibrary:$rootProject.barVersion"
 }

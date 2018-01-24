@@ -7,6 +7,8 @@ import android.view.MenuItem;
 
 import com.xuke.andoirdone.R;
 import com.xuke.andoirdone.view.fragment.home.HomeRootFragment;
+import com.xuke.andoirdone.view.fragment.movie.MovieRootFragment;
+import com.xuke.andoirdone.view.fragment.my.MyRootFragment;
 import com.zyw.horrarndoo.sdk.base.activity.BaseCompatActivity;
 import com.zyw.horrarndoo.sdk.helper.BottomNavigationViewHelper;
 import com.zyw.horrarndoo.sdk.rxbus.RxBus;
@@ -43,8 +45,8 @@ public class MainActivity extends BaseCompatActivity {
     protected void initView(Bundle savedInstanceState) {
         if (savedInstanceState == null){
             mFragments[FIRST] = HomeRootFragment.newInstance();
-            mFragments[SECOND] = HomeRootFragment.newInstance();
-            mFragments[THIRD] = HomeRootFragment.newInstance();
+            mFragments[SECOND] = MovieRootFragment.newInstance();
+            mFragments[THIRD] = MyRootFragment.newInstance();
 
             loadMultipleRootFragment(R.id.fl_container, FIRST,
                     mFragments[FIRST],

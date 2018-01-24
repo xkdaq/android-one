@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.zyw.horrarndoo.sdk.AppManager;
 import com.zyw.horrarndoo.sdk.R;
 import com.zyw.horrarndoo.sdk.global.GlobalApplication;
@@ -44,6 +45,7 @@ public abstract class BaseCompatActivity extends SupportActivity {
     protected void onDestroy() {
         super.onDestroy();
         AppManager.getAppManager().finishActivity(this);
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
     }
 
     @Override
@@ -53,11 +55,14 @@ public abstract class BaseCompatActivity extends SupportActivity {
     }
 
     private void init(Bundle savedInstanceState) {
-        setTheme(ThemeUtils.themeArr[SpUtils.getThemeIndex(this)][
-                SpUtils.getNightModel(this) ? 1 : 0]);
+        setTheme(ThemeUtils.themeArr[SpUtils.getThemeIndex(this)][SpUtils.getNightModel(this) ? 1 : 0]);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
         StatusBarUtils.setTransparent(this);
+        ImmersionBar.with(this)
+                .fitsSystemWindows(true)  //使用该属性,必须指定状态栏颜色
+                .statusBarColor(R.color.colorPrimary)
+                .init();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initData();
         initView(savedInstanceState);
