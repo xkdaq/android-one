@@ -129,7 +129,7 @@
                     android:background="@null"
                     android:gravity="center"
                     android:text="获取验证码"
-                    android:textColor="@color/txt_black"
+                    android:textColor="@color/c_c7c7c7"
                     android:textSize="12sp" />
 
             </LinearLayout>

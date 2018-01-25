@@ -21,4 +21,9 @@
 
     <!--标题颜色-->
     <color name="colorTitle">#666</color>
+
+    <!--获取验证码-->
+    <color name="black">#000000</color>
+
+    <color name="c_c7c7c7">#c7c7c7</color>
 </resources>

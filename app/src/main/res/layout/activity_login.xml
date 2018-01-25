@@ -113,7 +113,6 @@
                     android:textColorHint="#c7c7cd"
                     android:textSize="14sp" />
 
-
                 <RelativeLayout
                     android:id="@+id/pswTypeRl"
                     android:layout_width="wrap_content"
@@ -121,8 +120,8 @@
 
                     <View
                         android:id="@+id/pswTypeView"
-                        android:layout_width="16dp"
-                        android:layout_height="9dp"
+                        android:layout_width="20dp"
+                        android:layout_height="12dp"
                         android:layout_centerInParent="true"
                         android:layout_marginRight="20dp"
                         android:background="@drawable/mima_dakaiyanjing" />

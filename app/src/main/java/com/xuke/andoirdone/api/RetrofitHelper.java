@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.xuke.andoirdone.model.bean.login.LoginBean;
+import com.xuke.andoirdone.model.bean.login.RegisterBean;
+import com.xuke.andoirdone.model.bean.login.ResultBean;
 import com.zyw.horrarndoo.sdk.helper.okhttp.CacheInterceptor;
 import com.zyw.horrarndoo.sdk.helper.okhttp.HttpCache;
 import com.zyw.horrarndoo.sdk.helper.okhttp.TrustManager;
@@ -78,13 +80,27 @@ public class RetrofitHelper {
      * @param password 密码
      * @// TODO: 2018/1/25 登录
      */
-    public Call<JsonObject> login(String username, String password) {
+    public Call<ResultBean<JsonObject>> login(String username, String password) {
         LoginBean loginBean = new LoginBean();
         loginBean.setUsername(username);
         loginBean.setPassword(password);
         String strEntity = gson.toJson(loginBean);
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), strEntity);
         return mAPIService.login(body);
+    }
+
+    /**
+     * @param username 用户名
+     * @param password 密码
+     * @// TODO: 2018/1/26 注册
+     */
+    public Call<ResultBean<JsonObject>> register(String username, String password) {
+        RegisterBean registerBean = new RegisterBean();
+        registerBean.setUsername(username);
+        registerBean.setPassword(password);
+        String strEntity = gson.toJson(registerBean);
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), strEntity);
+        return mAPIService.register(body);
     }
 }
 

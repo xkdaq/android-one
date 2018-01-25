@@ -1,6 +1,7 @@
 package com.xuke.andoirdone.api;
 
 import com.google.gson.JsonObject;
+import com.xuke.andoirdone.model.bean.login.ResultBean;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -14,6 +15,9 @@ public interface APIService {
     String HOST = "http://120.78.147.1/";
 
     @POST("ssm/user/login")
-    Call<JsonObject> login(@Body RequestBody body);
+    Call<ResultBean<JsonObject>> login(@Body RequestBody body);
+
+    @POST("ssm/user/register")
+    Call<ResultBean<JsonObject>> register(@Body RequestBody body);
 
 }

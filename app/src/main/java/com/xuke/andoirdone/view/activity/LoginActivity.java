@@ -11,8 +11,10 @@ import com.google.gson.JsonObject;
 import com.orhanobut.logger.Logger;
 import com.xuke.andoirdone.R;
 import com.xuke.andoirdone.api.RetrofitHelper;
+import com.xuke.andoirdone.model.bean.login.ResultBean;
 import com.xuke.andoirdone.view.widge.ProgressDlgUtil;
 import com.zyw.horrarndoo.sdk.base.activity.BaseCompatActivity;
+import com.zyw.horrarndoo.sdk.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -73,16 +75,27 @@ public class LoginActivity extends BaseCompatActivity {
 
     public void login(String username, String password) {
         ProgressDlgUtil.showProgressDlg(this);
-        Call<JsonObject> login = RetrofitHelper.getInstance().login(username, password);
-        login.enqueue(new Callback<JsonObject>() {
+        Call<ResultBean<JsonObject>> login = RetrofitHelper.getInstance().login(username, password);
+        login.enqueue(new Callback<ResultBean<JsonObject>>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+            public void onResponse(Call<ResultBean<JsonObject>> call, Response<ResultBean<JsonObject>> response) {
                 ProgressDlgUtil.stopProgressDlg();
-                Logger.e("onResponse: response=" + response.body());
+                ResultBean<JsonObject> body = response.body();
+                Logger.e("onResponse: response=" + body);
+                if (body != null) {
+                    ResultBean.MetaBean meta = body.getMeta();
+                    if (meta.isSuccess()){
+
+                        ToastUtils.showToast("登录成功");
+                        finish();
+                    }else {
+                        ToastUtils.showToast(meta.getMessage());
+                    }
+                }
             }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
+            public void onFailure(Call<ResultBean<JsonObject>> call, Throwable t) {
                 ProgressDlgUtil.stopProgressDlg();
 
             }
@@ -91,7 +104,7 @@ public class LoginActivity extends BaseCompatActivity {
 
     /**
      * 设置密码是否可见
-     * */
+     */
     private void setEyeStatue() {
         pswTypeView.setBackgroundResource(isShowPassWord ? R.drawable.mima_guangbiyanjing : R.drawable.mima_dakaiyanjing);
         psw.setInputType(isShowPassWord ? InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD : (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD));

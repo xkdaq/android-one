@@ -24,4 +24,10 @@
     <string name="reg_tip_code">请输入验证码</string>
     <string name="reg_get_code">获取验证码</string>
     <string name="next">下一步</string>
+    <string name="title_setpwd">设置密码</string>
+    <string name="set_pwd_one">设置密码:</string>
+    <string name="tip_set_pwd_one">请输入6-16位密码</string>
+    <string name="confirm_pwd">确认密码:</string>
+    <string name="tip_confirm_pwd">请再次确认密码</string>
+    <string name="finish">完成</string>
 </resources>

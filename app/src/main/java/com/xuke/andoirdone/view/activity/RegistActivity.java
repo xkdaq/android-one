@@ -1,5 +1,6 @@
 package com.xuke.andoirdone.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.widget.Toolbar;
@@ -65,6 +66,7 @@ public class RegistActivity extends BaseCompatActivity {
                 if (timeEnable) {
                     boolean enable = !TextUtils.isEmpty(s) && RegexUtils.isMobile(s.toString());
                     btnCheckCode.setEnabled(enable);
+                    btnCheckCode.setTextColor(getResources().getColor(enable ? R.color.black : R.color.c_c7c7c7));
                 }
             }
         });
@@ -90,7 +92,7 @@ public class RegistActivity extends BaseCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_check_code:
-                ProgressDlgUtil.showProgressDlg("",this);
+                ProgressDlgUtil.showProgressDlg("正在获取", this);
                 String phone = etPhone.getText().toString().trim();
                 if (RegexUtils.checkMobileNumber(phone)) {
                     timeEnable = false;
@@ -101,6 +103,7 @@ public class RegistActivity extends BaseCompatActivity {
                         public void onTick(long millisUntilFinished) {
                             long s = millisUntilFinished / 1000;
                             String text = "重新获取(" + s + "s)";
+                            btnCheckCode.setTextColor(getResources().getColor(R.color.c_c7c7c7));
                             btnCheckCode.setText(text);
                         }
 
@@ -108,6 +111,7 @@ public class RegistActivity extends BaseCompatActivity {
                         public void onFinish() {
                             timeEnable = true;
                             btnCheckCode.setText("获取验证码");
+                            btnCheckCode.setTextColor(getResources().getColor(R.color.black));
                             boolean enable = !TextUtils.isEmpty(etPhone.getText().toString())
                                     && RegexUtils.isMobile(etPhone.getText().toString());
                             btnCheckCode.setEnabled(enable);
@@ -122,11 +126,13 @@ public class RegistActivity extends BaseCompatActivity {
                 }
                 break;
             case R.id.tv_next:
-                ProgressDlgUtil.showProgressDlg("",this);
+                ProgressDlgUtil.showProgressDlg("请稍后...", this);
                 String phone2 = etPhone.getText().toString().trim();
                 String code = etCode.getText().toString().trim();
                 if (isPrepared()) {
                     submitCode("86", phone2, code);
+                } else {
+                    ProgressDlgUtil.stopProgressDlg();
                 }
                 break;
         }
@@ -145,7 +151,7 @@ public class RegistActivity extends BaseCompatActivity {
                 ProgressDlgUtil.stopProgressDlg();
                 if (result == SMSSDK.RESULT_COMPLETE) {
                     // TODO 处理成功得到验证码的结果
-                    if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE){
+                    if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
                         //获取验证码成功
                         ToastUtils.showToast("验证码发送成功");
                     }
@@ -171,7 +177,10 @@ public class RegistActivity extends BaseCompatActivity {
                     // TODO 处理验证成功的结果
                     if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
                         //提交验证码成功
-                        startActivity(RegistTwoActivity.class);
+                        Intent intent = new Intent();
+                        intent.putExtra("phone", etPhone.getText().toString().trim());
+                        startActivity(RegistTwoActivity.class, intent);
+                        finish();
                     }
                 }
 
