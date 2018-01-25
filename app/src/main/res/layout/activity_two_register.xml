@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/title_register"
+                android:text="设置密码"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
         </android.support.v7.widget.Toolbar>
@@ -59,7 +59,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/reg_phone"
+                    android:text="设置密码:"
                     android:textColor="#333333"
                     android:textSize="16sp" />
 
@@ -69,7 +69,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
                     android:background="@null"
-                    android:hint="@string/reg_tip_phone"
+                    android:hint="请输入6-16位密码"
                     android:textColor="#000000"
                     android:textColorHint="#c7c7cd"
                     android:textSize="14dp" />
@@ -95,7 +95,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/reg_code"
+                    android:text="确认密码:"
                     android:textColor="#333333"
                     android:textSize="16sp" />
 
@@ -106,31 +106,13 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:hint="@string/reg_tip_code"
+                    android:hint="请再次确认密码"
+                    android:inputType="textPassword"
                     android:maxLength="16"
                     android:singleLine="true"
                     android:textColor="#000000"
                     android:textColorHint="#c7c7cd"
                     android:textSize="14sp" />
-
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="#e0e0e0" />
-
-                <Button
-                    android:id="@+id/btn_check_code"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:background="@null"
-                    android:gravity="center"
-                    android:text="获取验证码"
-                    android:textColor="@color/txt_black"
-                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -147,7 +129,7 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/shape_bg_finish"
         android:gravity="center"
-        android:text="@string/next"
+        android:text="完成"
         android:textColor="#666666"
         android:textSize="16sp" />
 

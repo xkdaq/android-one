@@ -17,4 +17,11 @@
     <string name="btn_login">登 录</string>
     <string name="tip_register">免费注册</string>
     <string name="tip_forget">忘记密码?</string>
+    <string name="title_register">注册</string>
+    <string name="reg_phone">手机号:</string>
+    <string name="reg_tip_phone">请输入手机号</string>
+    <string name="reg_code">验证码:</string>
+    <string name="reg_tip_code">请输入验证码</string>
+    <string name="reg_get_code">获取验证码</string>
+    <string name="next">下一步</string>
 </resources>
