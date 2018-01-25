@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">一个</string>
+    <string name="app_name">obo</string>
+    <string name="bar_home">首页</string>
+    <string name="bar_movie">电影</string>
+    <string name="bar_my">我的</string>
+    <string name="title_movie">豆瓣热映</string>
+    <string name="director">导演：</string>
+    <string name="starring">主演：</string>
+    <string name="stype">类型：</string>
+    <string name="star">评分：</string>
+    <string name="my_title">我的</string>
+    <string name="title_login">登录</string>
+    <string name="phone">账 号</string>
+    <string name="hint_phone">请输入手机号</string>
+    <string name="password">密 码</string>
+    <string name="hint_password">请输入6-16位密码</string>
+    <string name="btn_login">登 录</string>
+    <string name="tip_register">免费注册</string>
+    <string name="tip_forget">忘记密码?</string>
 </resources>

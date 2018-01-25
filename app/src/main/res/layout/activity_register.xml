@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/title_login"
+                android:text="注册"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
         </android.support.v7.widget.Toolbar>
@@ -59,7 +59,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/phone"
+                    android:text="手机号:"
                     android:textColor="#333333"
                     android:textSize="16sp" />
 
@@ -69,7 +69,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
                     android:background="@null"
-                    android:hint="@string/hint_phone"
+                    android:hint="请输入手机号"
                     android:textColor="#000000"
                     android:textColorHint="#c7c7cd"
                     android:textSize="14dp" />
@@ -89,12 +89,14 @@
                 android:layout_height="60dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingLeft="10dp">
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/password"
+                    android:text="验证码:"
                     android:textColor="#333333"
                     android:textSize="16sp" />
 
@@ -105,7 +107,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:hint="@string/hint_password"
+                    android:hint="请输入验证码"
                     android:inputType="textPassword"
                     android:maxLength="16"
                     android:singleLine="true"
@@ -113,19 +115,28 @@
                     android:textColorHint="#c7c7cd"
                     android:textSize="14sp" />
 
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+
+                    android:background="#e0e0e0" />
+
 
                 <RelativeLayout
                     android:id="@+id/pswTypeRl"
                     android:layout_width="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:layout_height="match_parent">
 
-                    <View
-                        android:id="@+id/pswTypeView"
-                        android:layout_width="16dp"
-                        android:layout_height="9dp"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="获取验证码"
                         android:layout_centerInParent="true"
-                        android:layout_marginRight="20dp"
-                        android:background="@drawable/mima_dakaiyanjing" />
+                        />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -143,39 +154,9 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/shape_bg_finish"
         android:gravity="center"
-        android:text="@string/btn_login"
+        android:text="下一步"
         android:textColor="#666666"
         android:textSize="16sp" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
-
-        <TextView
-            android:id="@+id/tv_register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:paddingRight="10dp"
-            android:textColor="#666666"
-            android:textSize="15sp"
-            android:text="@string/tip_register" />
-
-        <TextView
-            android:id="@+id/tv_forget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_alignParentRight="true"
-            android:paddingLeft="10dp"
-            android:textColor="#666666"
-            android:textSize="15sp"
-            android:text="@string/tip_forget" />
-    </RelativeLayout>
 
 
 </LinearLayout>
