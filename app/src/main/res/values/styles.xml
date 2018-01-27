@@ -18,6 +18,7 @@
         <item name="overlapAnchor">false</item>
     </style>
 
+    <!--加载view-->
     <style name="dialog_loading" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:background">@android:color/transparent</item>
         <item name="android:windowIsFloating">true</item>
@@ -31,6 +32,16 @@
         <item name="android:windowEnterAnimation">@anim/pop_in</item>
         <item name="android:windowExitAnimation">@anim/pop_out</item>
     </style>
+
+    <!--条目veiw-->
+    <declare-styleable name="ItemView">
+        <attr name="ItemLeftImage" format="reference" />
+        <attr name="ItemRightImage" format="reference" />
+        <attr name="ItemLeftText" format="string" />
+        <attr name="ItemRightText" format="string" />
+        <attr name="ItemPointText" format="string" />
+        <attr name="isPointShow" format="boolean" />
+    </declare-styleable>
 
 
 </resources>

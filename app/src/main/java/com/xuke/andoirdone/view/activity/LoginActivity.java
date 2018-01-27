@@ -73,6 +73,9 @@ public class LoginActivity extends BaseCompatActivity {
         }
     }
 
+    /**
+     * 登录
+     * */
     public void login(String username, String password) {
         ProgressDlgUtil.showProgressDlg(this);
         Call<ResultBean<JsonObject>> login = RetrofitHelper.getInstance().login(username, password);
@@ -97,7 +100,7 @@ public class LoginActivity extends BaseCompatActivity {
             @Override
             public void onFailure(Call<ResultBean<JsonObject>> call, Throwable t) {
                 ProgressDlgUtil.stopProgressDlg();
-
+                ToastUtils.showToast("登录失败,请检查用户名和密码是否正确");
             }
         });
     }

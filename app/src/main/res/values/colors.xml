@@ -17,13 +17,33 @@
     <color name="colorItemBackground">#d9d9d9</color>
 
     <!--白色背景-->
-    <color name="colorWhite">#ffffffff</color>
+    <color name="colorWhite">#ffffff</color>
 
     <!--标题颜色-->
     <color name="colorTitle">#666</color>
 
     <!--获取验证码-->
     <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
 
     <color name="c_c7c7c7">#c7c7c7</color>
+
+    <color name="c_111111">#111111</color>
+    <color name="c_222222">#222222</color>
+    <color name="c_333333">#333333</color>
+    <color name="c_444444">#444444</color>
+    <color name="c_555555">#555555</color>
+    <color name="c_666666">#666666</color>
+    <color name="c_777777">#777777</color>
+    <color name="c_888888">#888888</color>
+    <color name="c_999999">#999999</color>
+    <color name="c_aaaaaa">#aaaaaa</color>
+    <color name="c_bbbbbb">#bbbbbb</color>
+    <color name="c_cccccc">#cccccc</color>
+    <color name="c_dddddd">#dddddd</color>
+    <color name="c_eeeeee">#eeeeee</color>
+
+
+    <color name="item_right_text">#9e9e9e</color>
+    <color name="item_left_text">#333333</color>
 </resources>

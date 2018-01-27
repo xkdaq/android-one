@@ -4,9 +4,7 @@
     android:id="@+id/message_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true"
-    >
+    android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -30,20 +28,134 @@
                 android:layout_gravity="center"
                 android:text="@string/my_title"
                 android:textColor="@color/white"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:id="@+id/tv_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="登 录"
-        android:textSize="16sp"
-        android:layout_gravity="center"
-        android:layout_marginTop="150dp"
-        android:padding="10dp"
-        android:background="@color/white"
-        />
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="60dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_photo"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:src="@drawable/img_defout_man" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/ll_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingRight="28dp">
+
+                        <TextView
+                            android:id="@+id/tv_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="会唱情歌的小猴子"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tv_simple"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="一只独立行走会唱情歌的小猴子"
+                            android:textColor="@color/c_333333"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_enter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/icon_next" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <com.xuke.andoirdone.view.widge.ItemView
+                style="@style/ItemView_account"
+                app:ItemLeftImage="@drawable/icon_like"
+                app:ItemLeftText="我的收藏"
+                app:ItemRightImage="@drawable/icon_next" />
+
+            <com.xuke.andoirdone.view.widge.ItemView
+                style="@style/ItemView_account"
+                app:ItemLeftImage="@drawable/icon_article"
+                app:ItemLeftText="我的图文"
+                app:ItemRightImage="@drawable/icon_next" />
+
+            <com.xuke.andoirdone.view.widge.ItemView
+                style="@style/ItemView_account"
+                app:ItemLeftImage="@drawable/icon_music"
+                app:ItemLeftText="我的音乐"
+                app:ItemRightImage="@drawable/icon_next" />
+
+            <com.xuke.andoirdone.view.widge.ItemView
+                style="@style/ItemView_account"
+                app:ItemLeftImage="@drawable/icon_movie"
+                app:ItemLeftText="我的影视"
+                app:ItemRightImage="@drawable/icon_next" />
+
+            <com.xuke.andoirdone.view.widge.ItemView
+                style="@style/ItemView_account"
+                app:ItemLeftImage="@drawable/icon_radio"
+                app:ItemLeftText="我的电台"
+                app:ItemRightImage="@drawable/icon_next" />
+
+            <com.xuke.andoirdone.view.widge.ItemView
+                style="@style/ItemView_account"
+                app:ItemLeftImage="@drawable/icon_setting"
+                app:ItemLeftText="设置"
+                app:ItemRightImage="@drawable/icon_next" />
+
+
+            <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_bg_round"
+                android:gravity="center"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:text="登 录"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
 
 </LinearLayout>

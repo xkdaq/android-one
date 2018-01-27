@@ -1,4 +1,4 @@
 <resources>
-
+    <dimen name="height_account">48dp</dimen>
 
 </resources>
