@@ -12,6 +12,10 @@ android {
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+
+        ndk {
+            abiFilters "armeabi", "x86_64", "x86", "armeabi-v7a", "arm64-v8a", "mips", "mips64"
+        }
     }
     buildTypes {
         release {
@@ -42,4 +46,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+
+    //bugly
+    implementation "com.tencent.bugly:crashreport:$rootProject.buglyVersion"
+    implementation "com.tencent.bugly:nativecrashreport:$rootProject.buglyndkVersion"
 }

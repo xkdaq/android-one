@@ -6,6 +6,7 @@ import android.view.Display;
 import android.view.WindowManager;
 
 import com.mob.MobSDK;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.zyw.horrarndoo.sdk.global.GlobalApplication;
 
 /**
@@ -26,6 +27,7 @@ public class MyApplication extends GlobalApplication {
         //初始化屏幕宽高
         getScreenSize();
         MobSDK.init(this);
+        CrashReport.initCrashReport(getApplicationContext(), "b22ab6d8c5", true);
     }
 
     public void getScreenSize() {

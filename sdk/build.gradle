@@ -31,7 +31,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(dir: 'libs', include: ['*.jar'])
 
     // Android support
     api "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
@@ -69,5 +69,5 @@ dependencies {
     api "com.gyf.barlibrary:barlibrary:$rootProject.barVersion"
 
     //BaseRecyclerViewAdapterHelper
-    compile "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.BaseRecyclerViewAdapterHelperVersion"
+    api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.BaseRecyclerViewAdapterHelperVersion"
 }
