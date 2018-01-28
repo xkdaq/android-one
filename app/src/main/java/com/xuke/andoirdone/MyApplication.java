@@ -11,6 +11,7 @@ import com.zyw.horrarndoo.sdk.global.GlobalApplication;
 
 /**
  * Created by xuke on 2018/1/23.
+ *
  */
 
 public class MyApplication extends GlobalApplication {

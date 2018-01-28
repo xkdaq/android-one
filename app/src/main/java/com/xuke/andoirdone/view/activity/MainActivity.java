@@ -19,6 +19,7 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * Created by xuke on 2018/1/23.
+ *
  */
 
 public class MainActivity extends BaseCompatActivity {
@@ -62,23 +63,19 @@ public class MainActivity extends BaseCompatActivity {
         }
 
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView
-                .OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.menu_item_home:
-                        showHideFragment(mFragments[FIRST]);
-                        break;
-                    case R.id.menu_item_knowledge:
-                        showHideFragment(mFragments[SECOND]);
-                        break;
-                    case R.id.menu_item_my:
-                        showHideFragment(mFragments[THIRD]);
-                        break;
-                }
-                return true;
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.menu_item_home:
+                    showHideFragment(mFragments[FIRST]);
+                    break;
+                case R.id.menu_item_knowledge:
+                    showHideFragment(mFragments[SECOND]);
+                    break;
+                case R.id.menu_item_my:
+                    showHideFragment(mFragments[THIRD]);
+                    break;
             }
+            return true;
         });
     }
 
