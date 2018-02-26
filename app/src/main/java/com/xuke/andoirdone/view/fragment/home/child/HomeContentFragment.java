@@ -6,22 +6,30 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.xuke.andoirdone.R;
+import com.zyw.horrarndoo.sdk.base.fragment.BaseCompatFragment;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 
-public class HomeContentFragment extends Fragment {
+public class HomeContentFragment extends BaseCompatFragment {
 
-    public static HomeContentFragment getInstance(int index) {
-        HomeContentFragment fragment = new HomeContentFragment();
-        return fragment;
-    }
+    @BindView(R.id.text)
+    TextView text;
 
-
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View inflate = inflater.inflate(R.layout.layout_itemview, container);
-        return inflate;
+    public int getLayoutId() {
+        return R.layout.fragment_home_content;
     }
+
+    @Override
+    public void initUI(View view, @Nullable Bundle savedInstanceState) {
+        String index = getArguments().getString("index");
+        text.setText(index);
+    }
+
 }

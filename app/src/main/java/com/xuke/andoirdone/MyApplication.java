@@ -27,7 +27,9 @@ public class MyApplication extends GlobalApplication {
         app = this;
         //初始化屏幕宽高
         getScreenSize();
+        //初始化短信mobsdk
         MobSDK.init(this);
+        //初始化bugly
         CrashReport.initCrashReport(getApplicationContext(), "b22ab6d8c5", true);
     }
 

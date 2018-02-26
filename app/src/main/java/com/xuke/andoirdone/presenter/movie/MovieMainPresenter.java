@@ -49,18 +49,15 @@ public class MovieMainPresenter extends MovieMainContract.MovieMainPresenter {
                 mIView.updateContentList(hotMovieBean.getSubjects());
                 Cache.saveHotMovieCache(hotMovieBean.getSubjects());
             }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                if (mIView == null){
-                    if (mIView.isVisiable()){
-                        mIView.showToast("请检查网络连接");
-                    }
-                    if (Cache.getHotMovieCache().size() == 0) {
-                        mIView.showNetworkError();
-                    } else {
-                        mIView.updateContentList(Cache.getHotMovieCache());
-                    }
+        }, throwable -> {
+            if (mIView == null){
+                if (mIView.isVisiable()){
+                    mIView.showToast("请检查网络连接");
+                }
+                if (Cache.getHotMovieCache().size() == 0) {
+                    mIView.showNetworkError();
+                } else {
+                    mIView.updateContentList(Cache.getHotMovieCache());
                 }
             }
         }));

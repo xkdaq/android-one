@@ -2,11 +2,19 @@ package com.xuke.andoirdone.view.fragment.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.xuke.andoirdone.R;
+import com.xuke.andoirdone.adapter.ViewPagerAdapter;
+import com.xuke.andoirdone.view.fragment.home.child.HomeContentFragment;
 import com.xuke.andoirdone.view.fragment.home.child.HomeFragment;
 import com.zyw.horrarndoo.sdk.base.fragment.BaseCompatFragment;
+
+import java.util.ArrayList;
+
+import butterknife.BindView;
 
 /**
  * Created by xuke on 2018/1/23.

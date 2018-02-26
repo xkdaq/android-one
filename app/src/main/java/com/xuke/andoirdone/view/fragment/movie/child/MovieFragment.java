@@ -25,6 +25,7 @@ import butterknife.BindView;
 
 /**
  * Created by xuke on 2018/1/23.
+ * 电影
  */
 public class MovieFragment extends BaseRecycleFragment<MovieMainContract.MovieMainPresenter,
         MovieMainContract.IMovieMainModel> implements MovieMainContract.IMovieMainView {

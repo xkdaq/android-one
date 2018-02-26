@@ -58,8 +58,8 @@ public class MainActivity extends BaseCompatActivity {
                     mFragments[THIRD]);
         }else {
             mFragments[FIRST] = findFragment(HomeRootFragment.class);
-            mFragments[SECOND] = findFragment(HomeRootFragment.class);
-            mFragments[THIRD] = findFragment(HomeRootFragment.class);
+            mFragments[SECOND] = findFragment(MovieRootFragment.class);
+            mFragments[THIRD] = findFragment(MyRootFragment.class);
         }
 
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);

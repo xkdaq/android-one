@@ -4,17 +4,19 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.xuke.andoirdone.utils.Constants;
-import com.xuke.andoirdone.view.fragment.home.child.HomeContentFragment;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private int mAdapterType;
+    private List<Fragment> fragments;
 
-    public ViewPagerAdapter(FragmentManager fm, int adapterType) {
+    public ViewPagerAdapter(FragmentManager fm, List<Fragment> fragList, int adapterType) {
         super(fm);
-        mAdapterType = adapterType;
+        this.fragments = fragList;
+        this.mAdapterType = adapterType;
     }
 
     @Override
@@ -24,18 +26,24 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if (position == Constants.MAX_PAGE_NUM - 1) {
-            //return MoreContentFragment.getInstance(mAdapterType);
-        }
-        switch (mAdapterType) {
-            case Constants.TYPE_HOME:
-                return HomeContentFragment.getInstance(position);
-        }
-        return HomeContentFragment.getInstance(position);
+//        if (position == Constants.MAX_PAGE_NUM - 1) {
+//            return MoreContentFragment.getInstance();
+//        }
+//        switch (mAdapterType) {
+//            case Constants.TYPE_HOME:
+//                return HomeContentFragment.getInstance(position);
+//        }
+//        return HomeContentFragment.getInstance(position);
+        return fragments.get(position);
+    }
+
+    public void refresh(ArrayList<Fragment> fragments) {
+        this.fragments = fragments;
+        notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return Constants.MAX_PAGE_NUM;
+        return fragments == null ? 0 : fragments.size();
     }
 }
