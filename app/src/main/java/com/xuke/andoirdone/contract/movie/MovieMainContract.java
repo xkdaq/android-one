@@ -19,6 +19,10 @@ import io.reactivex.Observable;
  */
 
 public interface MovieMainContract {
+
+    /**
+     * 热门电影Presenter
+     * */
     abstract class MovieMainPresenter extends BasePresenter<IMovieMainModel, IMovieMainView> {
         /**
          * 加载最新的最热电影
@@ -27,10 +31,6 @@ public interface MovieMainContract {
 
         /**
          * item点击事件
-         *
-         * @param position  position
-         * @param item      item
-         * @param imageView imageView
          */
         public abstract void onItemClick(int position, SubjectsBean item, ImageView imageView);
 
@@ -40,20 +40,22 @@ public interface MovieMainContract {
         public abstract void onHeaderClick();
     }
 
+    /**
+     * 热门电影Model
+     * */
     interface IMovieMainModel extends IBaseModel {
         /**
          * 获取最热电影
-         *
-         * @return 最热电影
          */
         Observable<HotMovieBean> getHotMovieList();
     }
 
+    /**
+     * 热门电影View
+     * */
     interface IMovieMainView extends IBaseFragment {
         /**
          * 更新界面list
-         *
-         * @param list list
          */
         void updateContentList(List<SubjectsBean> list);
 

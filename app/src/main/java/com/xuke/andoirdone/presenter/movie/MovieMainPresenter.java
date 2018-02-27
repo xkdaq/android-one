@@ -6,11 +6,8 @@ import android.widget.ImageView;
 import com.orhanobut.logger.Logger;
 import com.xuke.andoirdone.cache.Cache;
 import com.xuke.andoirdone.contract.movie.MovieMainContract;
-import com.xuke.andoirdone.model.bean.douban.HotMovieBean;
 import com.xuke.andoirdone.model.bean.douban.child.SubjectsBean;
 import com.xuke.andoirdone.model.movie.MovieMainModel;
-
-import io.reactivex.functions.Consumer;
 
 
 /**
@@ -36,22 +33,19 @@ public class MovieMainPresenter extends MovieMainContract.MovieMainPresenter {
 
     @Override
     public void loadHotMovieList() {
-        if (mIView == null || mIModel == null){
+        if (mIView == null || mIModel == null) {
             return;
         }
-        mRxManager.register(mIModel.getHotMovieList().subscribe(new Consumer<HotMovieBean>() {
-            @Override
-            public void accept(HotMovieBean hotMovieBean) throws Exception {
-                //Logger.e("hotMovieBean:"+hotMovieBean.toString());
-                if (mIView == null) {
-                    return;
-                }
-                mIView.updateContentList(hotMovieBean.getSubjects());
-                Cache.saveHotMovieCache(hotMovieBean.getSubjects());
+        mRxManager.register(mIModel.getHotMovieList().subscribe(hotMovieBean -> {
+            //Logger.e("hotMovieBean:"+hotMovieBean.toString());
+            if (mIView == null) {
+                return;
             }
+            mIView.updateContentList(hotMovieBean.getSubjects());
+            Cache.saveHotMovieCache(hotMovieBean.getSubjects());
         }, throwable -> {
-            if (mIView == null){
-                if (mIView.isVisiable()){
+            if (mIView == null) {
+                if (mIView.isVisiable()) {
                     mIView.showToast("请检查网络连接");
                 }
                 if (Cache.getHotMovieCache().size() == 0) {

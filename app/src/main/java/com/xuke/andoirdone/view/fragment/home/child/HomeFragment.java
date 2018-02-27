@@ -91,11 +91,7 @@ public class HomeFragment extends BaseMVPCompatFragment {
         fragmentList = new ArrayList<>();
         fragmentList.clear();
         for (int i = 0; i < mDatas.size(); i++) {
-            HomeContentFragment cardFragment = new HomeContentFragment();
-            Bundle bundle = new Bundle();
-            bundle.putString("index", mDatas.get(i));
-            cardFragment.setArguments(bundle);
-            fragmentList.add(cardFragment);
+            fragmentList.add(HomeContentFragment.getInstance(mDatas.get(i)));
         }
         viewPagerAdapter.refresh(fragmentList);
     }

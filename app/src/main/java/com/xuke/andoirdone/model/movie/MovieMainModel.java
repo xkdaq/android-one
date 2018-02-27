@@ -28,6 +28,6 @@ public class MovieMainModel extends BaseModel implements MovieMainContract.IMovi
         return RetrofitCreateHelper
                 .createApi(DoubanApi.class, DoubanApi.HOST)
                 .getHotMovie()
-                .compose(RxHelper.<HotMovieBean>rxSchedulerHelper());
+                .compose(RxHelper.rxSchedulerHelper());
     }
 }
