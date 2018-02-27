@@ -12,6 +12,7 @@ import com.xuke.andoirdone.model.movie.MovieMainModel;
 
 /**
  * Created by xuke on 2018/1/24.
+ * 热门电影的Presenter
  */
 
 public class MovieMainPresenter extends MovieMainContract.MovieMainPresenter {

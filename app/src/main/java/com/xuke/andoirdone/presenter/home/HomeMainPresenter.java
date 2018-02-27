@@ -9,7 +9,7 @@ import com.xuke.andoirdone.model.home.HomeContentModel;
 
 /**
  * Created by xuke on 2018/2/27.
- * 首页的presenter
+ * 首页的Presenter
  */
 
 public class HomeMainPresenter extends HomeContenContract.HomeContentPresenter {

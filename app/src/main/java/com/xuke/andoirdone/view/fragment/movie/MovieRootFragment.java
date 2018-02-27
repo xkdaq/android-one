@@ -10,6 +10,7 @@ import com.zyw.horrarndoo.sdk.base.fragment.BaseCompatFragment;
 
 /**
  * Created by xuke on 2018/1/23.
+ * <p></p>
  */
 public class MovieRootFragment extends BaseCompatFragment {
 

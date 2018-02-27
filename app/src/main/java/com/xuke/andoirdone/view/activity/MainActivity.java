@@ -1,9 +1,7 @@
 package com.xuke.andoirdone.view.activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.view.MenuItem;
 
 import com.xuke.andoirdone.R;
 import com.xuke.andoirdone.view.fragment.home.HomeRootFragment;
@@ -19,7 +17,7 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * Created by xuke on 2018/1/23.
- *
+ * 主页
  */
 
 public class MainActivity extends BaseCompatActivity {
@@ -34,6 +32,7 @@ public class MainActivity extends BaseCompatActivity {
     private long TOUCH_TIME = 0;
     private static final long WAIT_TIME = 2000L;
     private SupportFragment[] mFragments = new SupportFragment[3];
+
     @Override
     protected void initData() {
         super.initData();
@@ -47,7 +46,7 @@ public class MainActivity extends BaseCompatActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             mFragments[FIRST] = HomeRootFragment.newInstance();
             mFragments[SECOND] = MovieRootFragment.newInstance();
             mFragments[THIRD] = MyRootFragment.newInstance();
@@ -56,7 +55,7 @@ public class MainActivity extends BaseCompatActivity {
                     mFragments[FIRST],
                     mFragments[SECOND],
                     mFragments[THIRD]);
-        }else {
+        } else {
             mFragments[FIRST] = findFragment(HomeRootFragment.class);
             mFragments[SECOND] = findFragment(MovieRootFragment.class);
             mFragments[THIRD] = findFragment(MyRootFragment.class);

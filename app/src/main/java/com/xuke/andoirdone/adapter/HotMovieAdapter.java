@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * Created by xuke on 2018/1/24.
+ * 热门电影列表的adapter
  */
 
 public class HotMovieAdapter extends BaseQuickAdapter<SubjectsBean, BaseViewHolder> {

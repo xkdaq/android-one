@@ -15,7 +15,10 @@ import com.zyw.horrarndoo.sdk.base.fragment.BaseMVPCompatFragment;
 
 import butterknife.BindView;
 
-
+/**
+ * Created by xuke on 2018/2/27.
+ * 首页内容
+ */
 public class HomeContentFragment extends BaseMVPCompatFragment<HomeContenContract.HomeContentPresenter, HomeContenContract.IHomeContentModel> implements HomeContenContract.IHomeContentView {
 
     @BindView(R.id.text)

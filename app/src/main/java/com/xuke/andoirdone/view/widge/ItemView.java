@@ -15,7 +15,7 @@ import com.xuke.andoirdone.R;
 
 /**
  * Created by xuke on 2017/12/23.
- * 条目
+ * 条目view
  */
 public class ItemView extends LinearLayout {
     private TextView tvLeft;

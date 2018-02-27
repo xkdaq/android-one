@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Created by xuke on 2018/1/24.
+ * 首页内容的id
  */
 
 public class OneIdBean implements Serializable {

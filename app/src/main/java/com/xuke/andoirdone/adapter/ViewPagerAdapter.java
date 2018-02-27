@@ -7,7 +7,10 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Created by xuke on 2018/2/26.
+ * 首页Viewpager的adapter
+ */
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private int mAdapterType;
