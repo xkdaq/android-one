@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.xuke.andoirdone.R;
 import com.xuke.andoirdone.contract.home.HomeContenContract;
 import com.xuke.andoirdone.model.bean.one.OneBean;
@@ -21,8 +23,12 @@ import butterknife.BindView;
  */
 public class HomeContentFragment extends BaseMVPCompatFragment<HomeContenContract.HomeContentPresenter, HomeContenContract.IHomeContentModel> implements HomeContenContract.IHomeContentView {
 
-    @BindView(R.id.text)
-    TextView text;
+    @BindView(R.id.img_hp_img_url)
+    ImageView imgHpImgUrl;
+    @BindView(R.id.tv_hp_author)
+    TextView tvHpAuthor;
+    @BindView(R.id.tv_hp_content)
+    TextView tvHpContent;
 
     private static String INDEX = "index";
 
@@ -53,7 +59,12 @@ public class HomeContentFragment extends BaseMVPCompatFragment<HomeContenContrac
 
     @Override
     public void updateContent(OneBean oneBean) {
-        text.setText(oneBean.toString());
+        OneBean.DataBean data = oneBean.getData();
+
+        Glide.with(this).load(data.getHp_img_url()).into(imgHpImgUrl);
+        tvHpAuthor.setText(data.getHp_author());
+        tvHpContent.setText(data.getHp_content());
+
     }
 
     @Override

@@ -50,4 +50,9 @@ dependencies {
     //bugly
     implementation "com.tencent.bugly:crashreport:$rootProject.buglyVersion"
     implementation "com.tencent.bugly:nativecrashreport:$rootProject.buglyndkVersion"
+
+    //justifytext
+    //implementation "com.github.bluejamesbond:textjustify-android:$rootProject.justifytextVersion"
+    //textView
+    //implementation "me.biubiubiu.justifytext:library:$rootProject.textVersion"
 }
