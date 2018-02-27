@@ -101,37 +101,37 @@
 
             </LinearLayout>
 
-            <com.xuke.andoirdone.view.widge.ItemView
+            <com.xuke.androidone.view.widge.ItemView
                 style="@style/ItemView_account"
                 app:ItemLeftImage="@drawable/icon_like"
                 app:ItemLeftText="我的收藏"
                 app:ItemRightImage="@drawable/icon_next" />
 
-            <com.xuke.andoirdone.view.widge.ItemView
+            <com.xuke.androidone.view.widge.ItemView
                 style="@style/ItemView_account"
                 app:ItemLeftImage="@drawable/icon_article"
                 app:ItemLeftText="我的图文"
                 app:ItemRightImage="@drawable/icon_next" />
 
-            <com.xuke.andoirdone.view.widge.ItemView
+            <com.xuke.androidone.view.widge.ItemView
                 style="@style/ItemView_account"
                 app:ItemLeftImage="@drawable/icon_music"
                 app:ItemLeftText="我的音乐"
                 app:ItemRightImage="@drawable/icon_next" />
 
-            <com.xuke.andoirdone.view.widge.ItemView
+            <com.xuke.androidone.view.widge.ItemView
                 style="@style/ItemView_account"
                 app:ItemLeftImage="@drawable/icon_movie"
                 app:ItemLeftText="我的影视"
                 app:ItemRightImage="@drawable/icon_next" />
 
-            <com.xuke.andoirdone.view.widge.ItemView
+            <com.xuke.androidone.view.widge.ItemView
                 style="@style/ItemView_account"
                 app:ItemLeftImage="@drawable/icon_radio"
                 app:ItemLeftText="我的电台"
                 app:ItemRightImage="@drawable/icon_next" />
 
-            <com.xuke.andoirdone.view.widge.ItemView
+            <com.xuke.androidone.view.widge.ItemView
                 style="@style/ItemView_account"
                 app:ItemLeftImage="@drawable/icon_setting"
                 app:ItemLeftText="设置"
