@@ -3,19 +3,27 @@ package com.xuke.androidone.view.fragment.home.child;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
 import com.xuke.androidone.R;
 import com.xuke.androidone.contract.home.HomeContenContract;
 import com.xuke.androidone.model.bean.one.OneBean;
 import com.xuke.androidone.presenter.home.HomeMainPresenter;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.base.fragment.BaseMVPCompatFragment;
+import com.zyw.horrarndoo.sdk.utils.ToastUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by xuke on 2018/2/27.
@@ -31,6 +39,12 @@ public class HomeContentFragment extends BaseMVPCompatFragment<HomeContenContrac
     TextView tvHpContent;
 
     private static String INDEX = "index";
+    @BindView(R.id.img_praisenum)
+    ImageView imgPraisenum;
+    @BindView(R.id.img_share)
+    ImageView imgShare;
+    private OneBean.DataBean.ShareListBean.QqBean qq;
+    private OneBean.DataBean.ShareListBean.WxBean wx;
 
     public static HomeContentFragment getInstance(String index) {
         HomeContentFragment fragment = new HomeContentFragment();
@@ -65,10 +79,64 @@ public class HomeContentFragment extends BaseMVPCompatFragment<HomeContenContrac
         tvHpAuthor.setText(data.getHp_author());
         tvHpContent.setText(data.getHp_content());
 
+        OneBean.DataBean.ShareListBean share_list = data.getShare_list();
+        qq = share_list.getQq();
+        wx = share_list.getWx();
+
     }
 
     @Override
     public void showNetworkError() {
 
+    }
+
+    /**
+     * 分享
+     */
+    public void share(String url, String content) {
+        ShareAction shareAction = new ShareAction(mActivity);
+        shareAction.setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE);
+
+        UMImage thumb = new UMImage(mActivity, R.mipmap.ic_launcher);
+        UMWeb web = new UMWeb(url);
+        web.setTitle("one by one");
+        web.setThumb(thumb);
+        web.setDescription(content);
+
+        shareAction.withMedia(web);
+        shareAction.setCallback(umShareListener);
+        shareAction.open();
+    }
+
+    private UMShareListener umShareListener = new UMShareListener() {
+        @Override
+        public void onStart(SHARE_MEDIA share_media) {
+            ToastUtils.showToast(share_media + "分享开始");
+        }
+
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+            ToastUtils.showToast(platform + " 分享成功啦");
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            ToastUtils.showToast(platform + " 分享失败啦");
+            if (t != null) {
+                Log.d("throw", "throw:" + t.getMessage());
+            }
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+            ToastUtils.showToast(platform + " 分享取消了");
+        }
+    };
+
+    @OnClick(R.id.img_share)
+    public void onViewClicked() {
+        String url = qq.getLink();
+        String content = tvHpContent.getText().toString().trim();
+        share(url, content);
     }
 }

@@ -7,6 +7,9 @@ import android.view.WindowManager;
 
 import com.mob.MobSDK;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
 import com.zyw.horrarndoo.sdk.global.GlobalApplication;
 
 /**
@@ -20,7 +23,10 @@ public class MyApplication extends GlobalApplication {
     public static float DIMEN_RATE = -1.0F;
     public static int DIMEN_DPI = -1;
     public static MyApplication app;
-
+    {
+        PlatformConfig.setWeixin("wx967daebe835fbeac","5bb696d9ccd75a38c8a0bfe0675559b3");
+        PlatformConfig.setQQZone("101464794", "49385bf53e5c9743ca89b339e8c96a9a");
+    }
     @Override
     public void onCreate() {
         super.onCreate();
@@ -31,6 +37,10 @@ public class MyApplication extends GlobalApplication {
         MobSDK.init(this);
         //初始化bugly
         CrashReport.initCrashReport(getApplicationContext(), "b22ab6d8c5", true);
+        //初始化友盟
+        UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "5a956c128f4a9d0e7b000336");
+        //友盟分享
+        UMShareAPI.get(this);
     }
 
     public void getScreenSize() {
