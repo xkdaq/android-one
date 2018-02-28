@@ -42,13 +42,6 @@ public abstract class BaseCompatActivity extends SupportActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        AppManager.getAppManager().finishActivity(this);
-        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
-    }
-
-    @Override
     public FragmentAnimator onCreateFragmentAnimator() {
         //fragment切换使用默认Vertical动画
         return new DefaultVerticalAnimator();
@@ -76,6 +69,13 @@ public abstract class BaseCompatActivity extends SupportActivity {
         finish();
         overridePendingTransition(0, 0);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AppManager.getAppManager().finishActivity(this);
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
     }
 
     /**

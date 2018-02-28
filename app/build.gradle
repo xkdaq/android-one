@@ -165,4 +165,7 @@ dependencies {
     //友盟
     implementation "com.umeng.sdk:common:$rootProject.umengCommonVersion"
     implementation "com.umeng.sdk:analytics:$rootProject.umengAnalyticsVersion"
+
+    //权限
+    implementation "com.tbruyelle.rxpermissions2:rxpermissions:$rootProject.rxPerssionsVersion"
 }
