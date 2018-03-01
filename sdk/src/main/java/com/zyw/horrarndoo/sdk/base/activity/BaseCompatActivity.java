@@ -221,7 +221,7 @@ public abstract class BaseCompatActivity extends SupportActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
+        //toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

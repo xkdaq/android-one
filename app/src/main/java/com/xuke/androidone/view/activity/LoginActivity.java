@@ -1,5 +1,7 @@
 package com.xuke.androidone.view.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -21,6 +23,9 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.xuke.androidone.utils.Accounts.ARG_KEY_WEB_VIEW_LOAD_TITLE;
+import static com.xuke.androidone.utils.Accounts.ARG_KEY_WEB_VIEW_LOAD_URL;
 
 /**
  * Created by xuke on 2018/1/25.
@@ -44,6 +49,12 @@ public class LoginActivity extends BaseCompatActivity {
     @BindView(R.id.pswTypeView)
     View pswTypeView;
     private boolean isShowPassWord = false;
+
+
+    public static void start(Context context) {
+        Intent intent = new Intent(context, WebViewActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected int getLayoutId() {

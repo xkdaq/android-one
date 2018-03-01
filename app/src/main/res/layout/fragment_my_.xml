@@ -4,6 +4,7 @@
     android:id="@+id/message_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f8f8f8"
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
@@ -34,7 +35,8 @@
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -96,42 +98,43 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="10dp"
+                        android:visibility="gone"
                         android:src="@drawable/icon_next" />
                 </RelativeLayout>
 
             </LinearLayout>
 
             <com.xuke.androidone.view.widge.ItemView
+                android:id="@+id/item_like"
                 style="@style/ItemView_account"
                 app:ItemLeftImage="@drawable/icon_like"
                 app:ItemLeftText="我的收藏"
                 app:ItemRightImage="@drawable/icon_next" />
 
             <com.xuke.androidone.view.widge.ItemView
+                android:id="@+id/item_image"
                 style="@style/ItemView_account"
                 app:ItemLeftImage="@drawable/icon_article"
                 app:ItemLeftText="我的图文"
                 app:ItemRightImage="@drawable/icon_next" />
 
             <com.xuke.androidone.view.widge.ItemView
+                android:id="@+id/item_feedback"
                 style="@style/ItemView_account"
-                app:ItemLeftImage="@drawable/icon_music"
-                app:ItemLeftText="我的音乐"
+                app:ItemLeftImage="@drawable/icon_feedback"
+                app:ItemLeftText="意见反馈"
+                app:ItemRightImage="@drawable/icon_next" />
+
+
+            <com.xuke.androidone.view.widge.ItemView
+                android:id="@+id/item_about_me"
+                style="@style/ItemView_account"
+                app:ItemLeftImage="@drawable/icon_about_me"
+                app:ItemLeftText="关于"
                 app:ItemRightImage="@drawable/icon_next" />
 
             <com.xuke.androidone.view.widge.ItemView
-                style="@style/ItemView_account"
-                app:ItemLeftImage="@drawable/icon_movie"
-                app:ItemLeftText="我的影视"
-                app:ItemRightImage="@drawable/icon_next" />
-
-            <com.xuke.androidone.view.widge.ItemView
-                style="@style/ItemView_account"
-                app:ItemLeftImage="@drawable/icon_radio"
-                app:ItemLeftText="我的电台"
-                app:ItemRightImage="@drawable/icon_next" />
-
-            <com.xuke.androidone.view.widge.ItemView
+                android:id="@+id/item_setting"
                 style="@style/ItemView_account"
                 app:ItemLeftImage="@drawable/icon_setting"
                 app:ItemLeftText="设置"
