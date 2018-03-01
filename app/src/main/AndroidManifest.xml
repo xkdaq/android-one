@@ -89,6 +89,10 @@
             android:name=".view.activity.RegistTwoActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".view.activity.MovieDetailActivity"
+            android:screenOrientation="portrait" />
+
 
     </application>
 

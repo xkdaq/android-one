@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,7 +25,9 @@ import com.zyw.horrarndoo.sdk.base.fragment.BaseMVPCompatFragment;
 import com.zyw.horrarndoo.sdk.utils.ToastUtils;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * Created by xuke on 2018/2/27.
@@ -37,12 +41,14 @@ public class HomeContentFragment extends BaseMVPCompatFragment<HomeContenContrac
     TextView tvHpAuthor;
     @BindView(R.id.tv_hp_content)
     TextView tvHpContent;
-
-    private static String INDEX = "index";
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
     @BindView(R.id.img_praisenum)
     ImageView imgPraisenum;
     @BindView(R.id.img_share)
     ImageView imgShare;
+
+    private static String INDEX = "index";
     private OneBean.DataBean.ShareListBean.QqBean qq;
     private OneBean.DataBean.ShareListBean.WxBean wx;
 
@@ -75,9 +81,14 @@ public class HomeContentFragment extends BaseMVPCompatFragment<HomeContenContrac
     public void updateContent(OneBean oneBean) {
         OneBean.DataBean data = oneBean.getData();
 
-        Glide.with(this).load(data.getHp_img_url()).into(imgHpImgUrl);
+        Glide.with(this)
+                .load(data.getHp_img_url())
+                .placeholder(R.drawable.img_default)//图片加载出来前，显示的图片
+                .error(R.drawable.img_default)//图片加载失败后，显示的图片
+                .into(imgHpImgUrl);
         tvHpAuthor.setText(data.getHp_author());
         tvHpContent.setText(data.getHp_content());
+        tvTitle.setText(data.getHp_title());
 
         OneBean.DataBean.ShareListBean share_list = data.getShare_list();
         qq = share_list.getQq();

@@ -8,6 +8,7 @@ import com.xuke.androidone.cache.Cache;
 import com.xuke.androidone.contract.movie.MovieMainContract;
 import com.xuke.androidone.model.bean.douban.child.SubjectsBean;
 import com.xuke.androidone.model.movie.MovieMainModel;
+import com.xuke.androidone.view.activity.MovieDetailActivity;
 
 
 /**
@@ -38,7 +39,7 @@ public class MovieMainPresenter extends MovieMainContract.MovieMainPresenter {
             return;
         }
         mRxManager.register(mIModel.getHotMovieList().subscribe(hotMovieBean -> {
-            //Logger.e("hotMovieBean:"+hotMovieBean.toString());
+            //Logger.e("hotMovieBean:" + hotMovieBean.toString());
             if (mIView == null) {
                 return;
             }
@@ -61,6 +62,7 @@ public class MovieMainPresenter extends MovieMainContract.MovieMainPresenter {
     @Override
     public void onItemClick(int position, SubjectsBean item, ImageView imageView) {
         Logger.e("item is clicked");
+        MovieDetailActivity.start(mIView.getBindActivity(), item, imageView);
     }
 
     @Override

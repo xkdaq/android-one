@@ -78,7 +78,7 @@ public class MovieFragment extends BaseRecycleFragment<MovieMainContract.MovieMa
 
     private void initRecycleView(List<SubjectsBean> list) {
         mHotMovieAdapter = new HotMovieAdapter(R.layout.item_hot_movie, list);
-        mHotMovieAdapter.setOnItemClickListener((adapter, view, position) -> mPresenter.onItemClick(position + 1, (SubjectsBean) adapter.getItem(position), (ImageView) view.findViewById(R.id.iv_moive_photo)));
+        mHotMovieAdapter.setOnItemClickListener((adapter, view, position) -> mPresenter.onItemClick(position + 1, (SubjectsBean) adapter.getItem(position), view.findViewById(R.id.iv_moive_photo)));
         initHeadView();
         mHotMovieAdapter.addHeaderView(headView);
         rvHotMovie.setAdapter(mHotMovieAdapter);
@@ -88,12 +88,7 @@ public class MovieFragment extends BaseRecycleFragment<MovieMainContract.MovieMa
         if (headView == null) {
             headView = ResourcesUtils.inflate(R.layout.sub_movie_top_header);
         }
-        headView.findViewById(R.id.ll_movie_top).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.onHeaderClick();
-            }
-        });
+        headView.findViewById(R.id.ll_movie_top).setOnClickListener(v -> mPresenter.onHeaderClick());
     }
 
 

@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Created by xuke on 2018/1/24.
+ * <p></p>
  */
 
 public class SubjectsBean implements Serializable{
@@ -152,8 +153,6 @@ public class SubjectsBean implements Serializable{
 
     /**
      * 获取导演字符串
-     *
-     * @return 导演字符串 A/B/C..
      */
     public String getDirectorsString() {
         return pListToString(getDirectors());
@@ -162,7 +161,6 @@ public class SubjectsBean implements Serializable{
     /**
      * 获取演员字符串
      *
-     * @return 演员字符串 A/B/C..
      */
     public String getActorsString() {
         return pListToString(getCasts());
@@ -171,7 +169,6 @@ public class SubjectsBean implements Serializable{
     /**
      * 获取类型字符串
      *
-     * @return 类型字符串 A/B/C..
      */
     public String getGenresString() {
         return sListToString(getGenres());
@@ -181,8 +178,6 @@ public class SubjectsBean implements Serializable{
     /**
      * 格式化list为字符串
      *
-     * @param list 类型list
-     * @return 字符串 A/B/C..
      */
     private String sListToString(List<String> list) {
         String str = "";
@@ -199,8 +194,6 @@ public class SubjectsBean implements Serializable{
     /**
      * 格式化list为字符串
      *
-     * @param list 类型list
-     * @return 字符串 A/B/C..
      */
     private String pListToString(List<PersonBean> list) {
         String str = "";

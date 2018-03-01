@@ -6,5 +6,5 @@ package com.xuke.androidone.utils;
  */
 
 public interface Accounts {
-    String isFirst = "accounts_isFirst";
+    String INTENT_KEY_MOVIE_SUBJECTBEAN = "intent_key_movie_subjectbean";
 }

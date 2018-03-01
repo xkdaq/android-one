@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="240dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/one_01" />
+            android:src="@drawable/img_default" />
 
         <TextView
             android:id="@+id/tv_hp_author"
@@ -38,8 +38,8 @@
                 android:layout_height="wrap_content"
                 android:lineSpacingMultiplier="1.5"
                 android:paddingBottom="30dp"
-                android:layout_marginLeft="26dp"
-                android:layout_marginRight="26dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="30dp"
                 android:text="不愠不火，不冷不热，不悲不喜。"
                 android:textColor="@color/c_333333"
@@ -50,6 +50,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_hp_content">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VOL.2018"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/c_666666"
+                    />
 
                 <ImageView
                     android:id="@+id/img_praisenum"

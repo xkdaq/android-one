@@ -1,9 +1,11 @@
 package com.xuke.androidone.api;
 
 import com.xuke.androidone.model.bean.douban.HotMovieBean;
+import com.xuke.androidone.model.bean.douban.MovieDetailBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -19,6 +21,14 @@ public interface DoubanApi {
      */
     @GET("v2/movie/in_theaters")
     Observable<HotMovieBean> getHotMovie();
+
+    /**
+     * 获取电影详情
+     *
+     * @param id 电影bean里的id
+     */
+    @GET("v2/movie/subject/{id}")
+    Observable<MovieDetailBean> getMovieDetail(@Path("id") String id);
 
     /**
      * 获取豆瓣电影top250
