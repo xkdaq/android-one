@@ -9,6 +9,7 @@ import com.xuke.androidone.contract.movie.MovieMainContract;
 import com.xuke.androidone.model.bean.douban.child.SubjectsBean;
 import com.xuke.androidone.model.movie.MovieMainModel;
 import com.xuke.androidone.view.activity.MovieDetailActivity;
+import com.xuke.androidone.view.fragment.movie.child.TopMoiveFragment;
 
 
 /**
@@ -68,5 +69,6 @@ public class MovieMainPresenter extends MovieMainContract.MovieMainPresenter {
     @Override
     public void onHeaderClick() {
         Logger.e("header is clicked");
+        mIView.startNewFragment(TopMoiveFragment.newInstance());
     }
 }
