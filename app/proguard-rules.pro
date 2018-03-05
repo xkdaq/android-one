@@ -20,11 +20,15 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-
+-ignorewarnings -keep class * { public private *; }
 
 ##bugly
 -dontwarn com.tencent.bugly.**
 -keep public class com.tencent.bugly.**{*;}
+
+##mob
+-keep class com.mob.**{*;}
+-keep class cn.smssdk.**{*;}
 
 
 ##友盟
