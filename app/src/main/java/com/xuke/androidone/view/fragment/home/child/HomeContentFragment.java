@@ -87,7 +87,7 @@ public class HomeContentFragment extends BaseMVPCompatFragment<HomeContenContrac
                 .error(R.drawable.img_default)//图片加载失败后，显示的图片
                 .into(imgHpImgUrl);
         tvHpAuthor.setText(data.getHp_author());
-        tvHpContent.setText(data.getHp_content());
+        tvHpContent.setText("        "+data.getHp_content());
         tvTitle.setText(data.getHp_title());
 
         OneBean.DataBean.ShareListBean share_list = data.getShare_list();

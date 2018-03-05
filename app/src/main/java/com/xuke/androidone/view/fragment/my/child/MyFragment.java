@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.xuke.androidone.R;
+import com.xuke.androidone.view.activity.AboutMeActivity;
 import com.xuke.androidone.view.activity.LoginActivity;
 import com.xuke.androidone.view.activity.WebViewActivity;
 import com.xuke.androidone.view.widge.ItemView;
@@ -90,6 +91,8 @@ public class MyFragment extends BaseMVPCompatFragment {
                 WebViewActivity.start(mContext, "意见反馈", "https://github.com/xkdaq/android-one/issues");
                 break;
             case R.id.item_about_me:
+                //关于作者
+                AboutMeActivity.start(mContext);
                 break;
             case R.id.item_setting:
                 break;

@@ -32,4 +32,5 @@
     <string name="finish">完成</string>
 
     <string name="transition_movie_img">transition_movie_img</string>
+    <string name="versionNameV">v%s</string>
 </resources>
