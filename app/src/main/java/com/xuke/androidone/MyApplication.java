@@ -24,7 +24,7 @@ public class MyApplication extends GlobalApplication {
     public static int DIMEN_DPI = -1;
     public static MyApplication app;
     {
-        PlatformConfig.setWeixin("wx967daebe835fbeac","5bb696d9ccd75a38c8a0bfe0675559b3");
+        PlatformConfig.setWeixin("wxdcf8e495206e1429","34023dd58da3e1c3a8b5e22812a4748c");
         PlatformConfig.setQQZone("101464794", "49385bf53e5c9743ca89b339e8c96a9a");
     }
     @Override
