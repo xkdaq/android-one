@@ -1,6 +1,7 @@
 package com.xuke.androidone.view.fragment.my.child;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,9 +10,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.xuke.androidone.MyApplication;
 import com.xuke.androidone.R;
+import com.xuke.androidone.utils.GlideManager;
+import com.xuke.androidone.utils.RelativePath;
+import com.xuke.androidone.utils.XKLoggerUtils;
 import com.xuke.androidone.view.activity.AboutMeActivity;
 import com.xuke.androidone.view.activity.LoginActivity;
 import com.xuke.androidone.view.activity.WebViewActivity;
@@ -55,6 +61,8 @@ public class MyFragment extends BaseMVPCompatFragment {
     ItemView itemSetting;
     @BindView(R.id.message_container)
     LinearLayout messageContainer;
+    @BindView(R.id.rl_login)
+    RelativeLayout rlLogin;
 
     public static MyFragment newInstance() {
         Bundle args = new Bundle();
@@ -76,15 +84,29 @@ public class MyFragment extends BaseMVPCompatFragment {
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-
+        refresh();
     }
 
-    @OnClick({R.id.item_like, R.id.item_image, R.id.item_feedback, R.id.item_about_me, R.id.item_setting, R.id.tv_login})
+    private void refresh() {
+        if (MyApplication.userBean == null) {
+            tvName.setText("登录/注册");
+            tvSimple.setVisibility(View.INVISIBLE);
+        } else {
+            tvName.setText(MyApplication.userBean.getName());
+            tvSimple.setVisibility(View.VISIBLE);
+            tvSimple.setText(MyApplication.userBean.getSign());
+            GlideManager.getInstance().loadImage(mContext, ivPhoto, RelativePath.toAbs(MyApplication.userBean.getPicture_xd()));
+        }
+    }
+
+    @OnClick({R.id.rl_login, R.id.item_like, R.id.item_image, R.id.item_feedback, R.id.item_about_me, R.id.item_setting, R.id.tv_login})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.item_like:
+                //我的收藏
                 break;
             case R.id.item_image:
+                //我的图文
                 break;
             case R.id.item_feedback:
                 //意见反馈
@@ -100,6 +122,20 @@ public class MyFragment extends BaseMVPCompatFragment {
                 //登录
                 LoginActivity.start(mContext);
                 break;
+            case R.id.rl_login:
+                //登录
+                if (MyApplication.userBean == null) {
+                    startActivityForResult(new Intent(mContext, LoginActivity.class), 100);
+                }
+                break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            refresh();
         }
     }
 }

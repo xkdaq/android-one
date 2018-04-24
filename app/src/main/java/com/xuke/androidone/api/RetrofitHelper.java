@@ -4,9 +4,15 @@ package com.xuke.androidone.api;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import com.xuke.androidone.model.bean.login.LoginBean;
+import com.xuke.androidone.MyApplication;
+import com.xuke.androidone.model.bean.BaseEntity;
+import com.xuke.androidone.model.bean.BaseResultBean;
 import com.xuke.androidone.model.bean.login.RegisterBean;
 import com.xuke.androidone.model.bean.login.ResultBean;
+import com.xuke.androidone.model.bean.login.TokenUserEntity;
+import com.xuke.androidone.model.bean.login.UserBean;
+import com.xuke.androidone.utils.PhoneInfoUtils;
+import com.xuke.androidone.utils.XKLoggerUtils;
 import com.zyw.horrarndoo.sdk.helper.okhttp.CacheInterceptor;
 import com.zyw.horrarndoo.sdk.helper.okhttp.HttpCache;
 import com.zyw.horrarndoo.sdk.helper.okhttp.TrustManager;
@@ -76,17 +82,25 @@ public class RetrofitHelper {
     }
 
     /**
-     * @param username 用户名
+     * @param phoneStr 手机号
      * @param password 密码
      * @// TODO: 2018/1/25 登录
      */
-    public Call<ResultBean<JsonObject>> login(String username, String password) {
-        LoginBean loginBean = new LoginBean();
-        loginBean.setUsername(username);
-        loginBean.setPassword(password);
-        String strEntity = gson.toJson(loginBean);
-        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), strEntity);
-        return mAPIService.login(body);
+    public Call<BaseResultBean<UserBean>> login(String phoneStr, String password) {
+        PhoneInfoUtils phoneInfoUtils = new PhoneInfoUtils(MyApplication.getInstance().getBaseContext());
+        TokenUserEntity tokenUserEntity = new TokenUserEntity();
+        tokenUserEntity.setAccountNum(phoneStr);
+        tokenUserEntity.setPassword(password);
+        tokenUserEntity.setMacid(phoneInfoUtils.getMacAddress());
+        tokenUserEntity.setMeid(phoneInfoUtils.getANDROID_ID());
+        tokenUserEntity.setSysid("android");
+        tokenUserEntity.setFromid("0");
+        BaseEntity<TokenUserEntity> baseEntity = new BaseEntity<>();
+        baseEntity.setCommand(Commands.GET_USER_PROFILE);
+        baseEntity.setContent(tokenUserEntity);
+        String result = gson.toJson(baseEntity);
+        XKLoggerUtils.e("xuke", result);
+        return mAPIService.login(result);
     }
 
     /**

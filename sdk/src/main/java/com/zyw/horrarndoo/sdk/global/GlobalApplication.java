@@ -9,7 +9,6 @@ import com.orhanobut.logger.Logger;
 import com.zyw.horrarndoo.sdk.BuildConfig;
 
 
-
 /**
  * Created by Horrarndoo on 2017/9/1.
  * <p>
@@ -30,6 +29,7 @@ public class GlobalApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        mApp = this;
         context = getApplicationContext();
         handler = new Handler();
         mainThreadId = android.os.Process.myTid();

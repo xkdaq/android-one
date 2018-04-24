@@ -38,8 +38,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
         android:layout_marginTop="88dp"
         android:background="@drawable/shape_bg_round"
         android:gravity="center_horizontal">
@@ -51,7 +51,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="55dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingLeft="10dp">
@@ -60,8 +60,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/phone"
-                    android:textColor="#333333"
-                    android:textSize="16sp" />
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/acount"
@@ -86,7 +86,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="55dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingLeft="10dp">
@@ -95,8 +95,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/password"
-                    android:textColor="#333333"
-                    android:textSize="16sp" />
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/psw"
@@ -138,8 +138,8 @@
         android:id="@+id/tv_login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/shape_bg_finish"
         android:gravity="center"
         android:text="@string/btn_login"
@@ -149,31 +149,31 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
 
         <TextView
             android:id="@+id/tv_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingRight="10dp"
-            android:textColor="#666666"
-            android:textSize="15sp"
-            android:text="@string/tip_register" />
+            android:paddingTop="10dp"
+            android:text="@string/tip_register"
+            android:textColor="#000000"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/tv_forget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
             android:layout_alignParentRight="true"
+            android:paddingBottom="10dp"
             android:paddingLeft="10dp"
-            android:textColor="#666666"
-            android:textSize="15sp"
-            android:text="@string/tip_forget" />
+            android:paddingTop="10dp"
+            android:text="@string/tip_forget"
+            android:textColor="#000000"
+            android:textSize="15sp" />
     </RelativeLayout>
 
 

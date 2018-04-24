@@ -40,7 +40,7 @@ public class MovieDetailPresenter extends MovieDetailContract.MovieDetailPresent
 
     @Override
     public void onItemClick(int position, PersonBean item) {
-        Logger.e("item is clicked");
+
 
     }
 

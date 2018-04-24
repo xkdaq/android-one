@@ -62,13 +62,11 @@ public class MovieMainPresenter extends MovieMainContract.MovieMainPresenter {
 
     @Override
     public void onItemClick(int position, SubjectsBean item, ImageView imageView) {
-        Logger.e("item is clicked");
         MovieDetailActivity.start(mIView.getBindActivity(), item, imageView);
     }
 
     @Override
     public void onHeaderClick() {
-        Logger.e("header is clicked");
         mIView.startNewFragment(TopMoiveFragment.newInstance());
     }
 }

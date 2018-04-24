@@ -68,7 +68,6 @@ public class RegistTwoActivity extends BaseCompatActivity {
             public void onResponse(Call<ResultBean<JsonObject>> call, Response<ResultBean<JsonObject>> response) {
                 ProgressDlgUtil.stopProgressDlg();
                 ResultBean<JsonObject> body = response.body();
-                Logger.e("onResponse: response=" + body);
                 if (body != null) {
                     ResultBean.MetaBean meta = body.getMeta();
                     if (meta.isSuccess()) {

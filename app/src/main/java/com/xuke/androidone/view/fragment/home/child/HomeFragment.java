@@ -73,7 +73,6 @@ public class HomeFragment extends BaseMVPCompatFragment {
                 OneIdBean body = response.body();
                 mDatas.clear();
                 if (body != null) {
-                    Logger.e("body=" + body.toString());
                     List<String> data = body.getData();
                     mDatas.addAll(data);
                     setData();

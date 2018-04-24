@@ -9,23 +9,20 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.gson.JsonObject;
-import com.orhanobut.logger.Logger;
+import com.xuke.androidone.MyApplication;
 import com.xuke.androidone.R;
 import com.xuke.androidone.api.RetrofitHelper;
-import com.xuke.androidone.model.bean.login.ResultBean;
+import com.xuke.androidone.model.bean.BaseResultBean;
+import com.xuke.androidone.model.bean.login.UserBean;
+import com.xuke.androidone.utils.XKLoggerUtils;
 import com.xuke.androidone.view.widge.ProgressDlgUtil;
 import com.zyw.horrarndoo.sdk.base.activity.BaseCompatActivity;
-import com.zyw.horrarndoo.sdk.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.xuke.androidone.utils.Accounts.ARG_KEY_WEB_VIEW_LOAD_TITLE;
-import static com.xuke.androidone.utils.Accounts.ARG_KEY_WEB_VIEW_LOAD_URL;
 
 /**
  * Created by xuke on 2018/1/25.
@@ -49,10 +46,11 @@ public class LoginActivity extends BaseCompatActivity {
     @BindView(R.id.pswTypeView)
     View pswTypeView;
     private boolean isShowPassWord = false;
+    private Call<BaseResultBean<UserBean>> loginCall;
 
 
     public static void start(Context context) {
-        Intent intent = new Intent(context, WebViewActivity.class);
+        Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
     }
 
@@ -86,32 +84,36 @@ public class LoginActivity extends BaseCompatActivity {
 
     /**
      * 登录
-     * */
-    public void login(String username, String password) {
+     */
+    public void login(String phone, String password) {
         ProgressDlgUtil.showProgressDlg(this);
-        Call<ResultBean<JsonObject>> login = RetrofitHelper.getInstance().login(username, password);
-        login.enqueue(new Callback<ResultBean<JsonObject>>() {
+        loginCall = RetrofitHelper.getInstance().login(phone, password);
+        loginCall.enqueue(new Callback<BaseResultBean<UserBean>>() {
             @Override
-            public void onResponse(Call<ResultBean<JsonObject>> call, Response<ResultBean<JsonObject>> response) {
-                ProgressDlgUtil.stopProgressDlg();
-                ResultBean<JsonObject> body = response.body();
-                Logger.e("onResponse: response=" + body);
-                if (body != null) {
-                    ResultBean.MetaBean meta = body.getMeta();
-                    if (meta.isSuccess()){
+            public void onResponse(Call<BaseResultBean<UserBean>> call, Response<BaseResultBean<UserBean>> response) {
+                if (response != null) {
+                    ProgressDlgUtil.stopProgressDlg();
+                    BaseResultBean<UserBean> body = response.body();
+                    if (body != null) {
+                        UserBean user = body.getObj();
+                        XKLoggerUtils.e("xuke", user.toString());
+                        if (MyApplication.userBean == null) {
+                            MyApplication.userBean = new UserBean();
+                            MyApplication.userBean.setAccountNum(user.getAccountNum());
+                            MyApplication.userBean.setName(user.getName());
+                            MyApplication.userBean.setPicture_xd(user.getPicture_xd());
+                            MyApplication.userBean.setSign(user.getSign());
 
-                        ToastUtils.showToast("登录成功");
-                        finish();
-                    }else {
-                        ToastUtils.showToast(meta.getMessage());
+                            setResult(RESULT_OK);
+                            finish();
+                        }
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<ResultBean<JsonObject>> call, Throwable t) {
+            public void onFailure(Call<BaseResultBean<UserBean>> call, Throwable t) {
                 ProgressDlgUtil.stopProgressDlg();
-                ToastUtils.showToast("登录失败,请检查用户名和密码是否正确");
             }
         });
     }

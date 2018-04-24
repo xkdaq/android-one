@@ -35,7 +35,7 @@ public class HomeMainPresenter extends HomeContenContract.HomeContentPresenter {
             return;
         }
         mRxManager.register(mIModel.getHomeContent(id).subscribe((OneBean oneBean) -> {
-            Logger.e("oneBean="+oneBean.toString());
+
             if (mIView == null) {
                 return;
             }
