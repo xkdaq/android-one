@@ -2,7 +2,6 @@ package com.xuke.androidone.presenter.movie;
 
 import android.support.annotation.NonNull;
 
-import com.orhanobut.logger.Logger;
 import com.xuke.androidone.contract.movie.MovieDetailContract;
 import com.xuke.androidone.model.bean.douban.child.PersonBean;
 import com.xuke.androidone.model.bean.douban.child.SubjectsBean;
@@ -46,7 +45,6 @@ public class MovieDetailPresenter extends MovieDetailContract.MovieDetailPresent
 
     @Override
     public void onHeaderClick(SubjectsBean bean) {
-        Logger.e("header is clicked");
     }
 
 

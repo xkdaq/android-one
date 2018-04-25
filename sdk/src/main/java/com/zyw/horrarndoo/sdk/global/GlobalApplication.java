@@ -4,10 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
-import com.orhanobut.logger.LogLevel;
-import com.orhanobut.logger.Logger;
-import com.zyw.horrarndoo.sdk.BuildConfig;
-
 
 /**
  * Created by Horrarndoo on 2017/9/1.
@@ -16,7 +12,6 @@ import com.zyw.horrarndoo.sdk.BuildConfig;
  */
 
 public class GlobalApplication extends Application {
-    private static final String LOG_TAG = "YZ_LOGGER";
     protected static Context context;
     protected static Handler handler;
     protected static int mainThreadId;
@@ -33,7 +28,6 @@ public class GlobalApplication extends Application {
         context = getApplicationContext();
         handler = new Handler();
         mainThreadId = android.os.Process.myTid();
-        Logger.init(LOG_TAG).logLevel(BuildConfig.IS_SHOW_LOG ? LogLevel.FULL : LogLevel.NONE);
 
     }
 

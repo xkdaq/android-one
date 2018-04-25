@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import com.orhanobut.logger.Logger;
 import com.xuke.androidone.R;
 import com.xuke.androidone.adapter.ViewPagerAdapter;
 import com.xuke.androidone.api.OneApi;

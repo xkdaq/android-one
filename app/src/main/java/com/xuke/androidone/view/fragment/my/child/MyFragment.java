@@ -17,7 +17,6 @@ import com.xuke.androidone.MyApplication;
 import com.xuke.androidone.R;
 import com.xuke.androidone.utils.GlideManager;
 import com.xuke.androidone.utils.RelativePath;
-import com.xuke.androidone.utils.XKLoggerUtils;
 import com.xuke.androidone.view.activity.AboutMeActivity;
 import com.xuke.androidone.view.activity.LoginActivity;
 import com.xuke.androidone.view.activity.WebViewActivity;

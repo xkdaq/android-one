@@ -2,7 +2,6 @@ package com.xuke.androidone.presenter.home;
 
 import android.support.annotation.NonNull;
 
-import com.orhanobut.logger.Logger;
 import com.xuke.androidone.contract.home.HomeContenContract;
 import com.xuke.androidone.model.bean.one.OneBean;
 import com.xuke.androidone.model.home.HomeContentModel;

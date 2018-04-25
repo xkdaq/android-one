@@ -56,7 +56,6 @@ ext {
     glideTransformationVersion = '2.0.1'
     butterknifeVersion = '8.8.1'
     fragmentationVersion = '1.1.6'
-    loggerVersion = '1.15'
     barVersion = '2.3.0'
     BaseRecyclerViewAdapterHelperVersion = '2.9.22'
 

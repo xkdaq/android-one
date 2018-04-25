@@ -4,8 +4,6 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.webkit.WebSettings;
 
-import com.orhanobut.logger.Logger;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;

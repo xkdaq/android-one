@@ -6,7 +6,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.JsonObject;
-import com.orhanobut.logger.Logger;
 import com.xuke.androidone.R;
 import com.xuke.androidone.api.RetrofitHelper;
 import com.xuke.androidone.model.bean.login.ResultBean;

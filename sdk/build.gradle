@@ -62,9 +62,6 @@ dependencies {
     // fragmentation
     api "me.yokeyword:fragmentation:$rootProject.fragmentationVersion"
 
-    // Logger
-    api "com.orhanobut:logger:$rootProject.loggerVersion"
-
     // 沉浸式状态栏
     api "com.gyf.barlibrary:barlibrary:$rootProject.barVersion"
 

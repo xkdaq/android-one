@@ -38,7 +38,6 @@ public abstract class BaseMVPCompatActivity<P extends BasePresenter, M extends I
             if (mIMode != null) {
                 mPresenter.attachMV(mIMode, this);
             }
-            //Logger.d("attach M V success.");
         }
     }
 
@@ -47,7 +46,6 @@ public abstract class BaseMVPCompatActivity<P extends BasePresenter, M extends I
         super.onDestroy();
         if (mPresenter != null) {
             mPresenter.detachMV();
-            //Logger.d("detach M V success.");
         }
     }
 

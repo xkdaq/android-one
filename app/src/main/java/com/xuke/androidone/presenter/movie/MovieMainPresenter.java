@@ -3,7 +3,6 @@ package com.xuke.androidone.presenter.movie;
 import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
-import com.orhanobut.logger.Logger;
 import com.xuke.androidone.cache.Cache;
 import com.xuke.androidone.contract.movie.MovieMainContract;
 import com.xuke.androidone.model.bean.douban.child.SubjectsBean;
