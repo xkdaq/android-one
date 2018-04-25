@@ -2,18 +2,21 @@ package com.xuke.androidone.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.xuke.androidone.MyApplication;
 import com.xuke.androidone.R;
 import com.xuke.androidone.api.RetrofitHelper;
+import com.xuke.androidone.dao.GreenDaoManager;
 import com.xuke.androidone.model.bean.BaseResultBean;
 import com.xuke.androidone.model.bean.login.UserBean;
+import com.xuke.androidone.utils.Accounts;
 import com.xuke.androidone.utils.XKLoggerUtils;
 import com.xuke.androidone.view.widge.ProgressDlgUtil;
 import com.zyw.horrarndoo.sdk.base.activity.BaseCompatActivity;
@@ -47,6 +50,7 @@ public class LoginActivity extends BaseCompatActivity {
     View pswTypeView;
     private boolean isShowPassWord = false;
     private Call<BaseResultBean<UserBean>> loginCall;
+    private SharedPreferences prefs;
 
 
     public static void start(Context context) {
@@ -61,7 +65,7 @@ public class LoginActivity extends BaseCompatActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
     @OnClick({R.id.pswTypeRl, R.id.tv_login, R.id.tv_register, R.id.tv_forget})
@@ -97,16 +101,11 @@ public class LoginActivity extends BaseCompatActivity {
                     if (body != null) {
                         UserBean user = body.getObj();
                         XKLoggerUtils.e("xuke", user.toString());
-                        if (MyApplication.userBean == null) {
-                            MyApplication.userBean = new UserBean();
-                            MyApplication.userBean.setAccountNum(user.getAccountNum());
-                            MyApplication.userBean.setName(user.getName());
-                            MyApplication.userBean.setPicture_xd(user.getPicture_xd());
-                            MyApplication.userBean.setSign(user.getSign());
-
-                            setResult(RESULT_OK);
-                            finish();
-                        }
+                        //保存登录用户到数据库
+                        GreenDaoManager.getInstance().saveLoginUser(user);
+                        prefs.edit().putString(Accounts.accountNum, user.getAccountNum()).apply();
+                        setResult(RESULT_OK);
+                        finish();
                     }
                 }
             }

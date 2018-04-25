@@ -5,8 +5,8 @@ buildscript {
     repositories {
         google()
         jcenter()
+        mavenCentral()
         maven {
-            // 添加MobSDK的maven地址
             url "http://mvn.mob.com/android"
         }
     }
@@ -17,6 +17,7 @@ buildscript {
         // in the individual module build.gradle files
         // 注册MobSDK
         classpath "com.mob.sdk:MobSDK:2018.0123.1706"
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
     }
 }
 
@@ -43,7 +44,7 @@ ext {
     targetSdkVersion = 26
     compileSdkVersion = 26
     buildToolsVersion = '26.0.2'
-    supportLibraryVersion = '27.0.2'
+    supportLibraryVersion = '27.1.1'
     retrofitVersion = '2.2.0'
     okhttploggingVersion = '3.4.1'
     okhttpVersion = '3.4.1'
@@ -57,10 +58,15 @@ ext {
     butterknifeVersion = '8.8.1'
     fragmentationVersion = '1.1.6'
     barVersion = '2.3.0'
-    BaseRecyclerViewAdapterHelperVersion = '2.9.22'
+    BaseRecyclerViewAdapterHelperVersion = '2.9.34'
 
     buglyVersion = '2.6.6'
     buglyndkVersion = '3.3.1'
     umengCommonVersion = '1.4.1'
     umengAnalyticsVersion = '7.4.1'
+
+    greendaoVersion = '3.2.2'
+    generatorVersion = '3.2.2'
+    multidexVersion = '1.0.3'
+
 }

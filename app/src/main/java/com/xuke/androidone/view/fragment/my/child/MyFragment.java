@@ -2,7 +2,9 @@ package com.xuke.androidone.view.fragment.my.child;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -15,6 +17,9 @@ import android.widget.TextView;
 
 import com.xuke.androidone.MyApplication;
 import com.xuke.androidone.R;
+import com.xuke.androidone.dao.GreenDaoManager;
+import com.xuke.androidone.model.bean.login.UserBean;
+import com.xuke.androidone.utils.Accounts;
 import com.xuke.androidone.utils.GlideManager;
 import com.xuke.androidone.utils.RelativePath;
 import com.xuke.androidone.view.activity.AboutMeActivity;
@@ -62,6 +67,9 @@ public class MyFragment extends BaseMVPCompatFragment {
     LinearLayout messageContainer;
     @BindView(R.id.rl_login)
     RelativeLayout rlLogin;
+    private SharedPreferences prefs;
+    private String accountNum;
+    private UserBean loginUser;
 
     public static MyFragment newInstance() {
         Bundle args = new Bundle();
@@ -83,18 +91,21 @@ public class MyFragment extends BaseMVPCompatFragment {
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
+        prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         refresh();
     }
 
     private void refresh() {
-        if (MyApplication.userBean == null) {
+        accountNum = prefs.getString(Accounts.accountNum,"");
+        loginUser = GreenDaoManager.getInstance().getLoginUser(accountNum);
+        if (loginUser == null) {
             tvName.setText("登录/注册");
-            tvSimple.setVisibility(View.INVISIBLE);
+            tvSimple.setVisibility(View.GONE);
         } else {
-            tvName.setText(MyApplication.userBean.getName());
+            tvName.setText(loginUser.getName());
             tvSimple.setVisibility(View.VISIBLE);
-            tvSimple.setText(MyApplication.userBean.getSign());
-            GlideManager.getInstance().loadImage(mContext, ivPhoto, RelativePath.toAbs(MyApplication.userBean.getPicture_xd()));
+            tvSimple.setText(loginUser.getSign());
+            GlideManager.getInstance().loadImage(mContext, ivPhoto, RelativePath.toAbs(loginUser.getPicture_xd()));
         }
     }
 
@@ -116,6 +127,7 @@ public class MyFragment extends BaseMVPCompatFragment {
                 AboutMeActivity.start(mContext);
                 break;
             case R.id.item_setting:
+                //设置
                 break;
             case R.id.tv_login:
                 //登录
@@ -123,7 +135,7 @@ public class MyFragment extends BaseMVPCompatFragment {
                 break;
             case R.id.rl_login:
                 //登录
-                if (MyApplication.userBean == null) {
+                if (loginUser == null) {
                     startActivityForResult(new Intent(mContext, LoginActivity.class), 100);
                 }
                 break;

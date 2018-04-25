@@ -1,6 +1,7 @@
 package com.xuke.androidone;
 
 import android.content.Context;
+import android.support.multidex.MultiDex;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
@@ -10,12 +11,12 @@ import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
-import com.xuke.androidone.model.bean.login.UserBean;
+import com.xuke.androidone.dao.GreenDaoManager;
 import com.zyw.horrarndoo.sdk.global.GlobalApplication;
 
 /**
  * Created by xuke on 2018/1/23.
- *
+ * <p></p>
  */
 
 public class MyApplication extends GlobalApplication {
@@ -24,11 +25,12 @@ public class MyApplication extends GlobalApplication {
     public static float DIMEN_RATE = -1.0F;
     public static int DIMEN_DPI = -1;
     public static MyApplication app;
-    public static UserBean userBean;
+
     {
-        PlatformConfig.setWeixin("wxdcf8e495206e1429","34023dd58da3e1c3a8b5e22812a4748c");
+        PlatformConfig.setWeixin("wxdcf8e495206e1429", "34023dd58da3e1c3a8b5e22812a4748c");
         PlatformConfig.setQQZone("101464794", "49385bf53e5c9743ca89b339e8c96a9a");
     }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -43,6 +45,8 @@ public class MyApplication extends GlobalApplication {
         UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "5a956c128f4a9d0e7b000336");
         //友盟分享
         UMShareAPI.get(this);
+        //数据库
+        GreenDaoManager.getInstance();
     }
 
     public void getScreenSize() {
@@ -59,5 +63,11 @@ public class MyApplication extends GlobalApplication {
             SCREEN_HEIGHT = SCREEN_WIDTH;
             SCREEN_WIDTH = t;
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }

@@ -1,39 +1,16 @@
 package com.xuke.androidone.model.bean.login;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Generated;
+
 /**
  * Created by xuke on 2018/4/24.
  * <p>用户</p>
  */
 
+@Entity
 public class UserBean {
-
-    /**
-     * position : Android开发工程师
-     * birthday : 1995-08-15
-     * alumni_id : 13
-     * sex : 1
-     * groupName : 窗友大学,窗友研发,2017级,测试一班
-     * picture_xd : //file/596/face/201804241747560001_avatar.jpg
-     * profession : 信息传输、软件和信息技术服务业
-     * accountNum : 596
-     * phoneNum : 17671787328
-     * intrestType : 要闻,推荐
-     * token : eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJqd3QiLClwM5ZVwifSIsImV4
-     * name : 许可
-     * workUtil : 新东方挖掘机有限公司
-     * pictureRT : /file/596/face/201804241747560001_avatar.jpg
-     * departName : 窗友大学,窗友研发,2017级,测试一班_null
-     * authenticated : 1
-     * isChangedSex : 1
-     * hobby : 写bug
-     * channels : 母校新闻,总会快递
-     * refreshToken : eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJqd3QiLCJpYXQiOjqiNuis
-     * baseInfoId : 0009900020201702005,0009900110201701000
-     * sign : 2019考研成功！加油~
-     * picture : http://www.wanandroid.cn:8088//file/596/face/201804241747560001_avatar.jpg
-     * email : kekemixiu@126.com
-     * address : 湖北 武汉市
-     */
 
     private String position;
     private String birthday;
@@ -42,6 +19,7 @@ public class UserBean {
     private String groupName;
     private String picture_xd;
     private String profession;
+    @Id
     private String accountNum;
     private String phoneNum;
     private String intrestType;
@@ -60,235 +38,193 @@ public class UserBean {
     private String picture;
     private String email;
     private String address;
-
-    @Override
-    public String toString() {
-        return "UserBean{" +
-                "position='" + position + '\'' +
-                ", birthday='" + birthday + '\'' +
-                ", alumni_id='" + alumni_id + '\'' +
-                ", sex='" + sex + '\'' +
-                ", groupName='" + groupName + '\'' +
-                ", picture_xd='" + picture_xd + '\'' +
-                ", profession='" + profession + '\'' +
-                ", accountNum='" + accountNum + '\'' +
-                ", phoneNum='" + phoneNum + '\'' +
-                ", intrestType='" + intrestType + '\'' +
-                ", token='" + token + '\'' +
-                ", name='" + name + '\'' +
-                ", workUtil='" + workUtil + '\'' +
-                ", pictureRT='" + pictureRT + '\'' +
-                ", departName='" + departName + '\'' +
-                ", authenticated='" + authenticated + '\'' +
-                ", isChangedSex='" + isChangedSex + '\'' +
-                ", hobby='" + hobby + '\'' +
-                ", channels='" + channels + '\'' +
-                ", refreshToken='" + refreshToken + '\'' +
-                ", baseInfoId='" + baseInfoId + '\'' +
-                ", sign='" + sign + '\'' +
-                ", picture='" + picture + '\'' +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+    @Generated(hash = 1726547176)
+    public UserBean(String position, String birthday, String alumni_id, String sex,
+            String groupName, String picture_xd, String profession,
+            String accountNum, String phoneNum, String intrestType, String token,
+            String name, String workUtil, String pictureRT, String departName,
+            String authenticated, String isChangedSex, String hobby,
+            String channels, String refreshToken, String baseInfoId, String sign,
+            String picture, String email, String address) {
+        this.position = position;
+        this.birthday = birthday;
+        this.alumni_id = alumni_id;
+        this.sex = sex;
+        this.groupName = groupName;
+        this.picture_xd = picture_xd;
+        this.profession = profession;
+        this.accountNum = accountNum;
+        this.phoneNum = phoneNum;
+        this.intrestType = intrestType;
+        this.token = token;
+        this.name = name;
+        this.workUtil = workUtil;
+        this.pictureRT = pictureRT;
+        this.departName = departName;
+        this.authenticated = authenticated;
+        this.isChangedSex = isChangedSex;
+        this.hobby = hobby;
+        this.channels = channels;
+        this.refreshToken = refreshToken;
+        this.baseInfoId = baseInfoId;
+        this.sign = sign;
+        this.picture = picture;
+        this.email = email;
+        this.address = address;
     }
-
+    @Generated(hash = 1203313951)
+    public UserBean() {
+    }
     public String getPosition() {
-        return position;
+        return this.position;
     }
-
     public void setPosition(String position) {
         this.position = position;
     }
-
     public String getBirthday() {
-        return birthday;
+        return this.birthday;
     }
-
     public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
-
     public String getAlumni_id() {
-        return alumni_id;
+        return this.alumni_id;
     }
-
     public void setAlumni_id(String alumni_id) {
         this.alumni_id = alumni_id;
     }
-
     public String getSex() {
-        return sex;
+        return this.sex;
     }
-
     public void setSex(String sex) {
         this.sex = sex;
     }
-
     public String getGroupName() {
-        return groupName;
+        return this.groupName;
     }
-
     public void setGroupName(String groupName) {
         this.groupName = groupName;
     }
-
     public String getPicture_xd() {
-        return picture_xd;
+        return this.picture_xd;
     }
-
     public void setPicture_xd(String picture_xd) {
         this.picture_xd = picture_xd;
     }
-
     public String getProfession() {
-        return profession;
+        return this.profession;
     }
-
     public void setProfession(String profession) {
         this.profession = profession;
     }
-
     public String getAccountNum() {
-        return accountNum;
+        return this.accountNum;
     }
-
     public void setAccountNum(String accountNum) {
         this.accountNum = accountNum;
     }
-
     public String getPhoneNum() {
-        return phoneNum;
+        return this.phoneNum;
     }
-
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
-
     public String getIntrestType() {
-        return intrestType;
+        return this.intrestType;
     }
-
     public void setIntrestType(String intrestType) {
         this.intrestType = intrestType;
     }
-
     public String getToken() {
-        return token;
+        return this.token;
     }
-
     public void setToken(String token) {
         this.token = token;
     }
-
     public String getName() {
-        return name;
+        return this.name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public String getWorkUtil() {
-        return workUtil;
+        return this.workUtil;
     }
-
     public void setWorkUtil(String workUtil) {
         this.workUtil = workUtil;
     }
-
     public String getPictureRT() {
-        return pictureRT;
+        return this.pictureRT;
     }
-
     public void setPictureRT(String pictureRT) {
         this.pictureRT = pictureRT;
     }
-
     public String getDepartName() {
-        return departName;
+        return this.departName;
     }
-
     public void setDepartName(String departName) {
         this.departName = departName;
     }
-
     public String getAuthenticated() {
-        return authenticated;
+        return this.authenticated;
     }
-
     public void setAuthenticated(String authenticated) {
         this.authenticated = authenticated;
     }
-
     public String getIsChangedSex() {
-        return isChangedSex;
+        return this.isChangedSex;
     }
-
     public void setIsChangedSex(String isChangedSex) {
         this.isChangedSex = isChangedSex;
     }
-
     public String getHobby() {
-        return hobby;
+        return this.hobby;
     }
-
     public void setHobby(String hobby) {
         this.hobby = hobby;
     }
-
     public String getChannels() {
-        return channels;
+        return this.channels;
     }
-
     public void setChannels(String channels) {
         this.channels = channels;
     }
-
     public String getRefreshToken() {
-        return refreshToken;
+        return this.refreshToken;
     }
-
     public void setRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
     }
-
     public String getBaseInfoId() {
-        return baseInfoId;
+        return this.baseInfoId;
     }
-
     public void setBaseInfoId(String baseInfoId) {
         this.baseInfoId = baseInfoId;
     }
-
     public String getSign() {
-        return sign;
+        return this.sign;
     }
-
     public void setSign(String sign) {
         this.sign = sign;
     }
-
     public String getPicture() {
-        return picture;
+        return this.picture;
     }
-
     public void setPicture(String picture) {
         this.picture = picture;
     }
-
     public String getEmail() {
-        return email;
+        return this.email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
-
     public String getAddress() {
-        return address;
+        return this.address;
     }
-
     public void setAddress(String address) {
         this.address = address;
     }
+
+    
 }
