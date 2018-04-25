@@ -27,6 +27,8 @@ Android版本:仿one一个
 
 #####3.3.我的
 
+- 3.1.[登录](https://www.showdoc.cc/web/#/47952192669005?page_id=318516491763712) 
+
 
 ###4.要点
 - RxJava
@@ -35,12 +37,12 @@ Android版本:仿one一个
 - Glide
 - Butterknife
 - fragmentation
-- Logger
 - 沉浸式状态栏
 - 多渠道打包
 - Mob
 - Bugly
 - 友盟分享
+- GreenDao
 
 ###5.下载体验
 - [蒲公英下载](https://www.pgyer.com/obyo)
