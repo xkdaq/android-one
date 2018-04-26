@@ -31,6 +31,8 @@
     <string name="tip_confirm_pwd">请再次确认密码</string>
     <string name="finish">完成</string>
 
+    <string name="title_account">个人信息</string>
+
     <string name="transition_movie_img">transition_movie_img</string>
     <string name="versionNameV">v%s</string>
 </resources>

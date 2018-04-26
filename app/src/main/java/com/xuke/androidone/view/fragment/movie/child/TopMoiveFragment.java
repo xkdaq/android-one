@@ -56,9 +56,9 @@ public class TopMoiveFragment extends BaseRecycleFragment<TopMovieContract.TopMo
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-        toolbar.setTitle("豆瓣电影Top250");
-        toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
-        toolbar.setNavigationOnClickListener(v -> onBackPressedSupport());
+        //返回键
+        //toolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
+        //toolbar.setNavigationOnClickListener(v -> onBackPressedSupport());
 
         mTopMovieAdapter = new TopMovieAdapter(R.layout.item_top_movie);
         rvTopMovie.setAdapter(mTopMovieAdapter);

@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.xuke.androidone.MyApplication;
 import com.xuke.androidone.R;
 import com.xuke.androidone.dao.GreenDaoManager;
 import com.xuke.androidone.model.bean.login.UserBean;
@@ -23,8 +22,10 @@ import com.xuke.androidone.utils.Accounts;
 import com.xuke.androidone.utils.GlideManager;
 import com.xuke.androidone.utils.RelativePath;
 import com.xuke.androidone.view.activity.AboutMeActivity;
+import com.xuke.androidone.view.activity.AccountActivity;
 import com.xuke.androidone.view.activity.LoginActivity;
 import com.xuke.androidone.view.activity.WebViewActivity;
+import com.xuke.androidone.view.widge.CircleImageView;
 import com.xuke.androidone.view.widge.ItemView;
 import com.zyw.horrarndoo.sdk.base.BasePresenter;
 import com.zyw.horrarndoo.sdk.base.fragment.BaseMVPCompatFragment;
@@ -39,14 +40,12 @@ import butterknife.OnClick;
 
 public class MyFragment extends BaseMVPCompatFragment {
 
-    @BindView(R.id.tv_login)
-    TextView tvLogin;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.app_bar)
     AppBarLayout appBar;
     @BindView(R.id.iv_photo)
-    ImageView ivPhoto;
+    CircleImageView ivPhoto;
     @BindView(R.id.tv_name)
     TextView tvName;
     @BindView(R.id.tv_simple)
@@ -67,6 +66,7 @@ public class MyFragment extends BaseMVPCompatFragment {
     LinearLayout messageContainer;
     @BindView(R.id.rl_login)
     RelativeLayout rlLogin;
+
     private SharedPreferences prefs;
     private String accountNum;
     private UserBean loginUser;
@@ -96,7 +96,7 @@ public class MyFragment extends BaseMVPCompatFragment {
     }
 
     private void refresh() {
-        accountNum = prefs.getString(Accounts.accountNum,"");
+        accountNum = prefs.getString(Accounts.accountNum, "");
         loginUser = GreenDaoManager.getInstance().getLoginUser(accountNum);
         if (loginUser == null) {
             tvName.setText("登录/注册");
@@ -105,11 +105,11 @@ public class MyFragment extends BaseMVPCompatFragment {
             tvName.setText(loginUser.getName());
             tvSimple.setVisibility(View.VISIBLE);
             tvSimple.setText(loginUser.getSign());
-            GlideManager.getInstance().loadImage(mContext, ivPhoto, RelativePath.toAbs(loginUser.getPicture_xd()));
+            GlideManager.getInstance().loadImage(mContext, ivPhoto, RelativePath.toAbs(loginUser.getPicture_xd()), R.drawable.img_defout_man);
         }
     }
 
-    @OnClick({R.id.rl_login, R.id.item_like, R.id.item_image, R.id.item_feedback, R.id.item_about_me, R.id.item_setting, R.id.tv_login})
+    @OnClick({R.id.rl_login, R.id.item_like, R.id.item_image, R.id.item_feedback, R.id.item_about_me, R.id.item_setting})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.item_like:
@@ -129,14 +129,12 @@ public class MyFragment extends BaseMVPCompatFragment {
             case R.id.item_setting:
                 //设置
                 break;
-            case R.id.tv_login:
-                //登录
-                LoginActivity.start(mContext);
-                break;
             case R.id.rl_login:
                 //登录
                 if (loginUser == null) {
                     startActivityForResult(new Intent(mContext, LoginActivity.class), 100);
+                } else {
+                    AccountActivity.start(mContext);
                 }
                 break;
         }

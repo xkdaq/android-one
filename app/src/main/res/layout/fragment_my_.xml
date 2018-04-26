@@ -51,10 +51,10 @@
                 android:background="@color/white"
                 android:orientation="horizontal">
 
-                <ImageView
+                <com.xuke.androidone.view.widge.CircleImageView
                     android:id="@+id/iv_photo"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
+                    android:layout_width="58dp"
+                    android:layout_height="58dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
@@ -141,21 +141,6 @@
                 app:ItemLeftText="设置"
                 app:ItemRightImage="@drawable/icon_next" />
 
-
-            <TextView
-                android:id="@+id/tv_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/shape_bg_round"
-                android:gravity="center"
-                android:padding="10dp"
-                android:visibility="gone"
-                android:text="登 录"
-                android:textSize="16sp" />
 
         </LinearLayout>
 

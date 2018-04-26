@@ -44,7 +44,6 @@ public class ItemView extends LinearLayout {
         String rightText = ta.getString(R.styleable.ItemView_ItemRightText);
         Drawable leftIcon = ta.getDrawable(R.styleable.ItemView_ItemLeftImage);
         Drawable rightIcon = ta.getDrawable(R.styleable.ItemView_ItemRightImage);
-        boolean isPointShow = ta.getBoolean(R.styleable.ItemView_isPointShow, false);
         ta.recycle();
 
         LayoutInflater.from(context).inflate(R.layout.layout_itemview, this);

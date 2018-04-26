@@ -19,6 +19,7 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="center"
             android:background="@color/colorPrimary"
+            app:title="豆瓣电影Top250"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.ToolbarPopupOverlay">
         </android.support.v7.widget.Toolbar>
