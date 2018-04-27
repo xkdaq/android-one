@@ -73,13 +73,26 @@
                         android:orientation="vertical"
                         android:paddingRight="28dp">
 
-                        <TextView
-                            android:id="@+id/tv_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="会唱情歌的小猴子"
-                            android:textColor="@color/black"
-                            android:textSize="18sp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tv_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="会唱情歌的小猴子"
+                                android:textColor="@color/black"
+                                android:textSize="18sp" />
+
+                            <ImageView
+                                android:id="@+id/iv_sex"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="6dp" />
+
+                        </LinearLayout>
 
                         <TextView
                             android:id="@+id/tv_simple"
@@ -99,8 +112,8 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="10dp"
-                        android:visibility="gone"
-                        android:src="@drawable/icon_next" />
+                        android:src="@drawable/icon_next"
+                        android:visibility="gone" />
                 </RelativeLayout>
 
             </LinearLayout>

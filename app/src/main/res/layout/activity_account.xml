@@ -100,14 +100,25 @@
                 style="@style/ItemView_account"
                 android:layout_marginTop="1dp"
                 app:ItemLeftText="手机号"
-                app:ItemRightImage="@drawable/icon_details" />
+                app:ItemRightImage="@drawable/icon_details"
+                />
 
             <com.xuke.androidone.view.widge.ItemView
                 android:id="@+id/item_user_sign"
                 style="@style/ItemView_account"
                 android:layout_marginTop="1dp"
-                app:ItemLeftText="个性签名"
-                app:ItemRightImage="@drawable/icon_details" />
+                app:ItemLeftText="个性签名" />
+
+            <TextView
+                android:id="@+id/tv_sign"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="50dp"
+                android:paddingLeft="10dp"
+                android:text=""
+                android:textColor="@color/item_right_text"
+                android:textSize="13sp" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

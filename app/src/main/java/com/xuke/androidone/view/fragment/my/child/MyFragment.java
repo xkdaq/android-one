@@ -66,6 +66,11 @@ public class MyFragment extends BaseMVPCompatFragment {
     LinearLayout messageContainer;
     @BindView(R.id.rl_login)
     RelativeLayout rlLogin;
+    @BindView(R.id.iv_sex)
+    ImageView ivSex;
+    @BindView(R.id.item_feedback)
+    ItemView itemFeedback;
+
 
     private SharedPreferences prefs;
     private String accountNum;
@@ -106,6 +111,11 @@ public class MyFragment extends BaseMVPCompatFragment {
             tvSimple.setVisibility(View.VISIBLE);
             tvSimple.setText(loginUser.getSign());
             GlideManager.getInstance().loadImage(mContext, ivPhoto, RelativePath.toAbs(loginUser.getPicture_xd()), R.drawable.img_defout_man);
+            if ("1".equals(loginUser.getSex())) {
+                ivSex.setImageResource(R.drawable.icon_female);
+            } else if ("0".equals(loginUser.getSex())) {
+                ivSex.setImageResource(R.drawable.icon_male);
+            }
         }
     }
 

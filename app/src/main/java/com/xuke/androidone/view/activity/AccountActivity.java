@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.Toolbar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.xuke.androidone.R;
 import com.xuke.androidone.dao.GreenDaoManager;
@@ -47,6 +48,9 @@ public class AccountActivity extends BaseCompatActivity {
     ItemView itemUserPhone;
     @BindView(R.id.item_user_sign)
     ItemView itemUserSign;
+    @BindView(R.id.tv_sign)
+    TextView tvSign;
+
     private SharedPreferences prefs;
     private String accountNum;
 
@@ -77,7 +81,7 @@ public class AccountActivity extends BaseCompatActivity {
             //手机号
             itemUserPhone.setRightText(loginUser.getPhoneNum());
             //签名
-            itemUserSign.setRightText(loginUser.getSign());
+            tvSign.setText(loginUser.getSign());
         }
     }
 }
