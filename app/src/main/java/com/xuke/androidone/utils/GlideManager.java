@@ -44,9 +44,9 @@ public class GlideManager {
 
     //直接加载网络图片
     public void loadImage(Context context, ImageView imageView, String url, boolean isCrop) {
-        if (isCrop){
-            loadImage(context,imageView,url);
-        }else {
+        if (isCrop) {
+            loadImage(context, imageView, url);
+        } else {
             Glide
                     .with(context)
                     .load(url)
@@ -74,6 +74,7 @@ public class GlideManager {
                 .with(context)
                 .load(file)
                 .centerCrop()
+                .dontAnimate()
                 .into(imageView);
 
     }

@@ -106,11 +106,14 @@ public class MyFragment extends BaseMVPCompatFragment {
         if (loginUser == null) {
             tvName.setText("登录/注册");
             tvSimple.setVisibility(View.GONE);
+            ivSex.setVisibility(View.GONE);
+            ivPhoto.setImageResource(R.drawable.img_defout_man);
         } else {
             tvName.setText(loginUser.getName());
             tvSimple.setVisibility(View.VISIBLE);
             tvSimple.setText(loginUser.getSign());
             GlideManager.getInstance().loadImage(mContext, ivPhoto, RelativePath.toAbs(loginUser.getPicture_xd()), R.drawable.img_defout_man);
+            ivSex.setVisibility(View.VISIBLE);
             if ("1".equals(loginUser.getSex())) {
                 ivSex.setImageResource(R.drawable.icon_female);
             } else if ("0".equals(loginUser.getSex())) {
@@ -138,6 +141,12 @@ public class MyFragment extends BaseMVPCompatFragment {
                 break;
             case R.id.item_setting:
                 //设置
+                if (loginUser != null) {
+                    //退出登录
+                    GreenDaoManager.getInstance().deleteLoginUser(prefs.getString(Accounts.accountNum, ""));
+                    cleanPreToken();
+                    refresh();
+                }
                 break;
             case R.id.rl_login:
                 //登录
@@ -148,6 +157,26 @@ public class MyFragment extends BaseMVPCompatFragment {
                 }
                 break;
         }
+    }
+
+
+    private void cleanPreToken() {
+        PreferenceManager.getDefaultSharedPreferences(mContext)
+                .edit()
+                .remove(Accounts.accountNum)
+                .apply();
+        PreferenceManager.getDefaultSharedPreferences(mContext)
+                .edit()
+                .remove(Accounts.phone)
+                .apply();
+        PreferenceManager.getDefaultSharedPreferences(mContext)
+                .edit()
+                .remove(Accounts.password)
+                .apply();
+        PreferenceManager.getDefaultSharedPreferences(mContext)
+                .edit()
+                .remove(Accounts.apptoken)
+                .apply();
     }
 
     @Override

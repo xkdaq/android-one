@@ -100,10 +100,14 @@ public class LoginActivity extends BaseCompatActivity {
                     BaseResultBean<UserBean> body = response.body();
                     if (body != null) {
                         UserBean user = body.getObj();
-                        XKLoggerUtils.e("xuke", user.toString());
                         //保存登录用户到数据库
                         GreenDaoManager.getInstance().saveLoginUser(user);
+
+                        prefs.edit().putString(Accounts.phone, phone).apply();
+                        prefs.edit().putString(Accounts.password, password).apply();
+
                         prefs.edit().putString(Accounts.accountNum, user.getAccountNum()).apply();
+                        prefs.edit().putString(Accounts.apptoken, user.getToken()).apply();
                         setResult(RESULT_OK);
                         finish();
                     }

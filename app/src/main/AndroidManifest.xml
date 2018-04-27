@@ -115,6 +115,11 @@
             android:name=".view.activity.AccountActivity"
             android:screenOrientation="portrait" />
 
+        <!--头像裁剪-->
+        <activity
+            android:name=".view.activity.HeadSettingActivity"
+            android:screenOrientation="portrait" />
+
 
     </application>
 

@@ -7,6 +7,8 @@ import com.xuke.androidone.dao.gen.DaoSession;
 import com.xuke.androidone.dao.gen.UserBeanDao;
 import com.xuke.androidone.model.bean.login.UserBean;
 
+import java.util.List;
+
 public class GreenDaoManager {
     private static GreenDaoManager mInstance;
     private DaoMaster mDaoMaster;
@@ -33,7 +35,6 @@ public class GreenDaoManager {
      * 获取DaoMaster
      * <p>
      * 判断是否存在数据库，如果没有则创建数据库
-     *
      */
     public DaoMaster getMaster() {
         if (null == mDaoMaster) {
@@ -69,7 +70,6 @@ public class GreenDaoManager {
      * 用户是否登录
      *
      * @param accountNum 用户id
-     *
      */
     public boolean isLoginUserExist(String accountNum) {
         UserBeanDao loginUserDao = mDaoSession.getUserBeanDao();
@@ -82,7 +82,6 @@ public class GreenDaoManager {
      * 插入或更新登录用户
      *
      * @param loginUser 登录用户
-     *
      */
     public void saveLoginUser(UserBean loginUser) {
         UserBeanDao loginUserDao = mDaoSession.getUserBeanDao();
@@ -105,6 +104,19 @@ public class GreenDaoManager {
         UserBeanDao loginUserDao = mDaoSession.getUserBeanDao();
         UserBean findUser = loginUserDao.queryBuilder().where(UserBeanDao.Properties.AccountNum.eq(accountNum)).build().unique();
         return findUser;
+    }
+
+    /**
+     * 根据用户id删除某用户
+     *
+     * @param accountNum 用户id
+     */
+    public void deleteLoginUser(String accountNum) {
+        UserBeanDao loginUserDao = mDaoSession.getUserBeanDao();
+        List<UserBean> userList = loginUserDao.queryBuilder().where(UserBeanDao.Properties.AccountNum.eq(accountNum)).build().list();
+        for (UserBean user : userList) {
+            loginUserDao.delete(user);
+        }
     }
 
 }
