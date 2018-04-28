@@ -38,7 +38,7 @@ public interface AccountContract {
         public abstract void btnCancelClicked();
 
         /**
-         * 回调
+         * 更换头像回调
          * */
         public abstract void onActivityResult(int requestCode, int resultCode, Intent intent);
 
@@ -46,6 +46,37 @@ public interface AccountContract {
          * 上传头像
          * */
         public abstract void uploadImage(String accountNum, String password, String uploadFileName, File takeImageFile);
+
+        /**
+         * 更新个人信息
+         * */
+        public abstract void uploadUserProfile(String accountNum, String password, String name, String sex, String birthday, String phone, String sign);
+
+        /**
+         * 更换昵称点击
+         * */
+        public abstract void btnNameClicked(String name);
+
+        /**
+         * 更换性别点击
+         * */
+        public abstract void btnSexClicked();
+
+        /**
+         * 更换生日点击
+         * */
+        public abstract void btnBirthdayClicked(String birthday);
+
+        /**
+         * 更换手机号点击
+         * */
+        public abstract void btnPhoneNumClicked();
+
+        /**
+         * 更换个性签名点击
+         * */
+        public abstract void btnSignClicked(String sign);
+
     }
 
 
@@ -94,6 +125,31 @@ public interface AccountContract {
          * 更新界面
          * */
         void refresh();
+
+        /**
+         * 更换昵称点击
+         * */
+        void changeName(String name);
+
+        /**
+         * 更换性别点击
+         * */
+        void changeSex();
+
+        /**
+         * 更换生日点击
+         * */
+        void changeBirthday(String birthday);
+
+        /**
+         * 更换手机号点击
+         * */
+        void changePhone();
+
+        /**
+         * 更换个性签名点击
+         * */
+        void changeSign(String sign);
 
     }
 }

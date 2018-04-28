@@ -81,11 +81,6 @@ public class AccountActivity extends BaseMVPCompatActivity<AccountContract.Accou
     private File file;
     private UserBean loginUser;
 
-    public static void start(Context context) {
-        Intent intent = new Intent(context, AccountActivity.class);
-        context.startActivity(intent);
-    }
-
     @Override
     protected int getLayoutId() {
         return R.layout.activity_account;
@@ -195,6 +190,44 @@ public class AccountActivity extends BaseMVPCompatActivity<AccountContract.Accou
         }
     }
 
+    @Override
+    public void changeName(String name) {
+        itemUserName.setRightText(name);
+        refreshInfo();
+    }
+
+    @Override
+    public void changeSex() {
+
+    }
+
+    @Override
+    public void changeBirthday(String birthday) {
+        itemUserBirth.setRightText(birthday);
+        refreshInfo();
+    }
+
+    @Override
+    public void changePhone() {
+
+    }
+
+    @Override
+    public void changeSign(String sign) {
+        tvSign.setText(sign);
+        refreshInfo();
+    }
+
+    private void refreshInfo() {
+        String name = itemUserName.getRightText();
+        String sex = "女".equals(itemUserSex.getRightText()) ? "1" : "0";
+        String birthday = itemUserBirth.getRightText();
+        String phone = itemUserPhone.getRightText();
+        String sign = tvSign.getText().toString().trim();
+        mPresenter.uploadUserProfile(accountNum, password, name, sex, birthday, phone, sign);
+    }
+
+
     @OnClick({R.id.rl_photo, R.id.item_user_name, R.id.item_user_sex, R.id.item_user_birth, R.id.item_user_phone, R.id.item_user_sign, R.id.tv_sign})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -204,19 +237,25 @@ public class AccountActivity extends BaseMVPCompatActivity<AccountContract.Accou
                 break;
             case R.id.item_user_name:
                 //修改昵称
+                mPresenter.btnNameClicked(itemUserName.getRightText().toString().trim());
                 break;
             case R.id.item_user_sex:
                 //修改性别
+                mPresenter.btnSexClicked();
                 break;
             case R.id.item_user_birth:
                 //修改生日
+                mPresenter.btnBirthdayClicked(itemUserBirth.getRightText().toString().trim());
                 break;
             case R.id.item_user_phone:
                 //修改手机号
+                mPresenter.btnPhoneNumClicked();
                 break;
             case R.id.item_user_sign:
-            case R.id.tv_sign:
                 //修改个性签名
+                mPresenter.btnSignClicked(tvSign.getText().toString().trim());
+                break;
+            case R.id.tv_sign:
                 break;
         }
     }
@@ -236,7 +275,6 @@ public class AccountActivity extends BaseMVPCompatActivity<AccountContract.Accou
         file = CompressHelper.getDefault(mContext).compressToFile(new File(cropImagePath));
         mPresenter.uploadImage(accountNum, password, "avatar.jpg", file);
     }
-
 
     @Override
     protected void onDestroy() {

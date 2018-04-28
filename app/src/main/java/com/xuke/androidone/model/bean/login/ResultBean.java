@@ -4,57 +4,32 @@ import java.io.Serializable;
 
 /**
  * Created by xuke on 2018/1/26.
+ * <P></P>
  */
 
-public class ResultBean<T> implements Serializable {
+public class ResultBean implements Serializable {
 
     /**
-     * meta : {"success":true,"message":"ok"}
-     * data : {"id":null,"userName":"xke","password":"123456","age":null}
+     * msg : 更新成功!
+     * success : true
      */
 
-    private MetaBean meta;
-    private T data;
+    private String msg;
+    private boolean success;
 
-    public MetaBean getMeta() {
-        return meta;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setMeta(MetaBean meta) {
-        this.meta = meta;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
-    public T getData() {
-        return data;
+    public boolean isSuccess() {
+        return success;
     }
 
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public static class MetaBean {
-        /**
-         * success : true
-         * message : ok
-         */
-
-        private boolean success;
-        private String message;
-
-        public boolean isSuccess() {
-            return success;
-        }
-
-        public void setSuccess(boolean success) {
-            this.success = success;
-        }
-
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 }

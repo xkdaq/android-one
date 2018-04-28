@@ -120,6 +120,11 @@
             android:name=".view.activity.HeadSettingActivity"
             android:screenOrientation="portrait" />
 
+        <!--编辑-->
+        <activity
+            android:name=".view.activity.EditActivity"
+            android:screenOrientation="portrait" />
+
 
     </application>
 

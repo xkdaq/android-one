@@ -153,7 +153,7 @@ public class MyFragment extends BaseMVPCompatFragment {
                 if (loginUser == null) {
                     startActivityForResult(new Intent(mContext, LoginActivity.class), 100);
                 } else {
-                    AccountActivity.start(mContext);
+                    startActivityForResult(new Intent(mContext, AccountActivity.class), 200);
                 }
                 break;
         }
@@ -182,7 +182,7 @@ public class MyFragment extends BaseMVPCompatFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100 && resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK) {
             refresh();
         }
     }

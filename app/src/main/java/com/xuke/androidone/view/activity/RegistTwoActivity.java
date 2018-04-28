@@ -60,28 +60,7 @@ public class RegistTwoActivity extends BaseCompatActivity {
      * 注册
      */
     private void regist() {
-        ProgressDlgUtil.showProgressDlg("正在注册", this);
-        Call<ResultBean<JsonObject>> register = RetrofitHelper.getInstance().register(phone, etPassword.getText().toString().trim());
-        register.enqueue(new Callback<ResultBean<JsonObject>>() {
-            @Override
-            public void onResponse(Call<ResultBean<JsonObject>> call, Response<ResultBean<JsonObject>> response) {
-                ProgressDlgUtil.stopProgressDlg();
-                ResultBean<JsonObject> body = response.body();
-                if (body != null) {
-                    ResultBean.MetaBean meta = body.getMeta();
-                    if (meta.isSuccess()) {
-                        ToastUtils.showToast("注册成功");
-                        finish();
-                    } else {
-                        ToastUtils.showToast(meta.getMessage());
-                    }
-                }
-            }
 
-            @Override
-            public void onFailure(Call<ResultBean<JsonObject>> call, Throwable t) {
-                ProgressDlgUtil.stopProgressDlg();
-            }
-        });
+
     }
 }

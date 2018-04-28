@@ -32,7 +32,7 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST(URL)
-    Call<ResultBean<JsonObject>> register(@Body RequestBody body);
+    Call<ResultBean> register(@Body RequestBody body);
 
     @Multipart
     @POST(URL)
@@ -42,5 +42,8 @@ public interface APIService {
     @POST(URL)
     Call<BaseResultBean<SearchUserInfo>> getSearchInfo(@Field("jsonStr") String result);
 
+    @FormUrlEncoded
+    @POST(URL)
+    Call<ResultBean> result(@Field("jsonStr") String baseEntity);
 
 }

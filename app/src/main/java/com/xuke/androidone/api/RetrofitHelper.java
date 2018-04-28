@@ -7,7 +7,6 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import com.xuke.androidone.MyApplication;
 import com.xuke.androidone.model.bean.BaseEntity;
 import com.xuke.androidone.model.bean.BaseResultBean;
@@ -17,6 +16,7 @@ import com.xuke.androidone.model.bean.login.RegisterBean;
 import com.xuke.androidone.model.bean.login.ResultBean;
 import com.xuke.androidone.model.bean.login.TokenUserEntity;
 import com.xuke.androidone.model.bean.login.UserBean;
+import com.xuke.androidone.model.bean.login.UserProfile;
 import com.xuke.androidone.utils.Accounts;
 import com.xuke.androidone.utils.PhoneInfoUtils;
 import com.xuke.androidone.utils.XKLoggerUtils;
@@ -26,7 +26,6 @@ import com.zyw.horrarndoo.sdk.helper.okhttp.TrustManager;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -149,7 +148,7 @@ public class RetrofitHelper {
      * @param password 密码
      * @// TODO: 2018/1/26 注册
      */
-    public Call<ResultBean<JsonObject>> register(String username, String password) {
+    public Call<ResultBean> register(String username, String password) {
         RegisterBean registerBean = new RegisterBean();
         registerBean.setUsername(username);
         registerBean.setPassword(password);
@@ -197,6 +196,17 @@ public class RetrofitHelper {
         baseEntity.setContent(accountNumEntity);
         String result = gson.toJson(baseEntity);
         return mAPIService.getSearchInfo(result);
+    }
+
+    /**
+     * 更新个人信息接口
+     */
+    public Call<ResultBean> uploadUserProfile(UserProfile userProfile) {
+        BaseEntity<UserProfile> baseEntity = new BaseEntity<>();
+        baseEntity.setCommand(Commands.UPDATE_USER_INFO);
+        baseEntity.setContent(userProfile);
+        String result = gson.toJson(baseEntity);
+        return mAPIService.result(result);
     }
 
 }

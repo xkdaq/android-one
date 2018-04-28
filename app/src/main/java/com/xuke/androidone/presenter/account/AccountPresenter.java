@@ -16,9 +16,12 @@ import com.xuke.androidone.dao.GreenDaoManager;
 import com.xuke.androidone.model.account.AccountModel;
 import com.xuke.androidone.model.bean.BaseResultBean;
 import com.xuke.androidone.model.bean.SearchUserInfo;
+import com.xuke.androidone.model.bean.login.ResultBean;
 import com.xuke.androidone.model.bean.login.UserBean;
+import com.xuke.androidone.model.bean.login.UserProfile;
 import com.xuke.androidone.utils.Accounts;
-import com.xuke.androidone.utils.XKLoggerUtils;
+import com.xuke.androidone.view.activity.EditActivity;
+import com.xuke.androidone.view.widge.ProgressDlgUtil;
 import com.zyw.horrarndoo.sdk.utils.FileUtils;
 import com.zyw.horrarndoo.sdk.utils.MD5Utils;
 import com.zyw.horrarndoo.sdk.utils.ToastUtils;
@@ -41,14 +44,23 @@ public class AccountPresenter extends AccountContract.AccountPresenter {
     //请求相册
     private static final int REQUEST_PHOTO = 101;
     //请求访问外部存储
-    private static final int READ_EXTERNAL_STORAGE_REQUEST_CODE = 103;
+    private static final int READ_EXTERNAL_STORAGE_REQUEST_CODE = 102;
     //请求写入外部存储
-    private static final int WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 104;
+    private static final int WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 103;
+
+    //修改昵称
+    private static final int CODE_NAME = 105;
+    //修改生日
+    private static final int CODE_BIRTHDAY = 106;
+    //修改个性签名
+    private static final int CODE_SIGN = 107;
+
 
     private File tempFile;
     private Activity context;
     private Call<BaseResultBean<String>> uploadCall;
     private Call<BaseResultBean<SearchUserInfo>> searchCall;
+    private Call<ResultBean> uploadUserCall;
 
     public AccountPresenter(Activity context) {
         this.context = context;
@@ -138,20 +150,29 @@ public class AccountPresenter extends AccountContract.AccountPresenter {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        switch (requestCode) {
-            case REQUEST_CAMERA: //调用系统相机返回
-                if (resultCode == Activity.RESULT_OK) {
+
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case REQUEST_CAMERA:
                     mIView.gotoHeadSettingActivity(Uri.fromFile(tempFile));
-                    XKLoggerUtils.e("xuke", Uri.fromFile(tempFile));
-                }
-                break;
-            case REQUEST_PHOTO:  //调用系统相册返回
-                if (resultCode == Activity.RESULT_OK) {
+                    break;
+                case REQUEST_PHOTO:
                     Uri uri = intent.getData();
                     mIView.gotoHeadSettingActivity(uri);
-                    XKLoggerUtils.e("xuke", uri);
-                }
-                break;
+                    break;
+                case CODE_NAME:
+                    String name = intent.getStringExtra("data");
+                    mIView.changeName(name);
+                    break;
+                case CODE_BIRTHDAY:
+                    String birthday = intent.getStringExtra("data");
+                    mIView.changeBirthday(birthday);
+                    break;
+                case CODE_SIGN:
+                    String sign = intent.getStringExtra("data");
+                    mIView.changeSign(sign);
+                    break;
+            }
         }
     }
 
@@ -167,7 +188,7 @@ public class AccountPresenter extends AccountContract.AccountPresenter {
                 BaseResultBean<String> body = response.body();
                 if (body != null) {
                     if (body.isSuccess()) {
-                        XKLoggerUtils.e("xuke", "" + body.getMsg());
+                        ToastUtils.showToast(body.getMsg());
                         loadUserInfo(accountNum);
                     }
                 }
@@ -198,6 +219,7 @@ public class AccountPresenter extends AccountContract.AccountPresenter {
                             loginUser.setPicture_xd(picture_xd);
                             GreenDaoManager.getInstance().saveLoginUser(loginUser);
                             mIView.refresh();
+                            context.setResult(Activity.RESULT_OK);
                         }
                     } else {
                         ToastUtils.showToast("" + baseResultEntity.getMsg());
@@ -210,6 +232,92 @@ public class AccountPresenter extends AccountContract.AccountPresenter {
                 ToastUtils.showToast("" + t.getMessage());
             }
         });
+    }
+
+
+    /**
+     * 更新个人信息
+     */
+    @Override
+    public void uploadUserProfile(String accountNum, String password,
+                                  String name, String sex, String birthday, String phone, String sign) {
+        UserProfile userProfile = new UserProfile();
+        userProfile.setAccountNum(accountNum);
+        userProfile.setPassword(password);
+        userProfile.setName(name);
+        userProfile.setSex(sex);
+        userProfile.setBirthday(birthday);
+        userProfile.setPhoneNum(phone);
+        userProfile.setSign(sign);
+        ProgressDlgUtil.showProgressDlg(context);
+        uploadUserCall = RetrofitHelper.getInstance().uploadUserProfile(userProfile);
+        uploadUserCall.enqueue(new Callback<ResultBean>() {
+            @Override
+            public void onResponse(Call<ResultBean> call, Response<ResultBean> response) {
+                ResultBean responseBody = response.body();
+                if (responseBody != null) {
+                    if (responseBody.isSuccess()) {
+                        ProgressDlgUtil.stopProgressDlg();
+                        ToastUtils.showToast(responseBody.getMsg());
+                        UserBean loginUser = GreenDaoManager.getInstance().getLoginUser(accountNum);
+                        if (loginUser != null) {
+                            loginUser.setName(name);
+                            loginUser.setSex(sex);
+                            loginUser.setBirthday(birthday);
+                            loginUser.setPhoneNum(phone);
+                            loginUser.setSign(sign);
+                            GreenDaoManager.getInstance().saveLoginUser(loginUser);
+                            mIView.refresh();
+                            context.setResult(Activity.RESULT_OK);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResultBean> call, Throwable t) {
+                ProgressDlgUtil.stopProgressDlg();
+                ToastUtils.showToast("" + t.getMessage());
+            }
+        });
+    }
+
+
+    @Override
+    public void btnNameClicked(String name) {
+        Intent intent = new Intent(context, EditActivity.class);
+        intent.putExtra("title", "编辑昵称");
+        intent.putExtra("data", name);
+        intent.putExtra("limit", 30);
+        context.startActivityForResult(intent, CODE_NAME);
+    }
+
+    @Override
+    public void btnSexClicked() {
+        ToastUtils.showToast("暂不支持修改性别");
+    }
+
+    @Override
+    public void btnBirthdayClicked(String birthday) {
+        Intent intent = new Intent(context, EditActivity.class);
+        intent.putExtra("title", "编辑生日");
+        intent.putExtra("data", birthday);
+        intent.putExtra("limit", 30);
+        context.startActivityForResult(intent, CODE_BIRTHDAY);
+    }
+
+    @Override
+    public void btnPhoneNumClicked() {
+        ToastUtils.showToast("暂不支持修改手机号");
+    }
+
+    @Override
+    public void btnSignClicked(String sign) {
+        Intent intent = new Intent(context, EditActivity.class);
+        intent.putExtra("title", "编辑个性签名");
+        intent.putExtra("data", sign);
+        intent.putExtra("limit", 30);
+        context.startActivityForResult(intent, CODE_SIGN);
     }
 
 

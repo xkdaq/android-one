@@ -91,15 +91,6 @@ public abstract class BaseCompatActivity extends SupportActivity {
     }
 
     /**
-     * 初始化view
-     * <p>
-     * 子类实现 控件绑定、视图初始化等内容
-     *
-     * @param savedInstanceState savedInstanceState
-     */
-    protected abstract void initView(Bundle savedInstanceState);
-
-    /**
      * 获取当前layouty的布局ID,用于设置当前布局
      * <p>
      * 交由子类实现
@@ -107,6 +98,15 @@ public abstract class BaseCompatActivity extends SupportActivity {
      * @return layout Id
      */
     protected abstract int getLayoutId();
+
+    /**
+     * 初始化view
+     * <p>
+     * 子类实现 控件绑定、视图初始化等内容
+     *
+     * @param savedInstanceState savedInstanceState
+     */
+    protected abstract void initView(Bundle savedInstanceState);
 
     /**
      * 显示提示框
