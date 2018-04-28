@@ -12,12 +12,13 @@ Android版本:仿one一个
 - buildToolsVersion 26.0.2  
 
 ###3.接口整理  
-[API接口文档 ](http://www.showdoc.cc/web/#/47952192669005) 密码:8023  
+[API接口文档 ](http://www.showdoc.cc/web/#/47952192669005)      密码:8023
 
 #####3.1.首页(one)  
 
 - 1.1.[首页接口](http://www.showdoc.cc/web/#/47952192669005?page_id=272160537809245)  
-- 1.2.[首页详情](http://www.showdoc.cc/web/#/47952192669005?page_id=272851373415643)  
+- 1.2.[首页详情](http://www.showdoc.cc/web/#/47952192669005?page_id=272851373415643)
+- 1.2.[按照月份获取往期信息](https://www.showdoc.cc/web/#/47952192669005?page_id=318494082000966)  
 
 #####3.2.电影(豆瓣)  
 
@@ -28,7 +29,9 @@ Android版本:仿one一个
 #####3.3.我的
 
 - 3.1.[登录](https://www.showdoc.cc/web/#/47952192669005?page_id=318516491763712) 
-
+- 3.2.[上传头像](https://www.showdoc.cc/web/#/47952192669005?page_id=341626271525594) 
+- 3.3.[查询个人详情](https://www.showdoc.cc/web/#/47952192669005?page_id=341798814443601) 
+- 3.4.[更新个人信息](https://www.showdoc.cc/web/#/47952192669005?page_id=341815811481937) 
 
 ###4.要点
 - RxJava
