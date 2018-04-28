@@ -57,8 +57,8 @@ public abstract class BaseCompatActivity extends SupportActivity {
                 .statusBarColor(R.color.colorPrimary)
                 .init();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        initData();
         initView(savedInstanceState);
+        initData();
         AppManager.getAppManager().addActivity(this);
     }
 

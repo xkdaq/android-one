@@ -41,6 +41,11 @@ public interface AccountContract {
          * 回调
          * */
         public abstract void onActivityResult(int requestCode, int resultCode, Intent intent);
+
+        /**
+         * 上传头像
+         * */
+        public abstract void uploadImage(String accountNum, String password, String uploadFileName, File takeImageFile);
     }
 
 
@@ -71,16 +76,11 @@ public interface AccountContract {
 
         /**
          * 前往系统相机界面
-         *
-         * @param tempFile    相片存储文件
-         * @param requestCode requestCode
          */
         void gotoSystemCamera(File tempFile, int requestCode);
 
         /**
          * 前往系统图库界面
-         *
-         * @param requestCode requestCode
          */
         void gotoSystemPhoto(int requestCode);
 
@@ -89,6 +89,11 @@ public interface AccountContract {
          * 前往裁剪设置界面
          * */
         void gotoHeadSettingActivity(Uri uri);
+
+        /**
+         * 更新界面
+         * */
+        void refresh();
 
     }
 }

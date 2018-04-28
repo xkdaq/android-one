@@ -69,8 +69,7 @@
                     android:layout_marginLeft="28dp"
                     android:layout_marginRight="20dp"
                     android:scaleType="fitXY"
-                    tools:ignore="contentDescription"
-                    tools:src="@drawable/img_defout_man" />
+                    tools:ignore="contentDescription" />
 
             </RelativeLayout>
 

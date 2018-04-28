@@ -19,18 +19,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.xuke.androidone.R;
-import com.xuke.androidone.api.RetrofitHelper;
 import com.xuke.androidone.contract.account.AccountContract;
 import com.xuke.androidone.dao.GreenDaoManager;
-import com.xuke.androidone.model.bean.BaseResultBean;
-import com.xuke.androidone.model.bean.SearchUserInfo;
 import com.xuke.androidone.model.bean.login.UserBean;
 import com.xuke.androidone.model.rxbus.RxEventHeadBean;
 import com.xuke.androidone.presenter.account.AccountPresenter;
 import com.xuke.androidone.utils.Accounts;
 import com.xuke.androidone.utils.GlideManager;
 import com.xuke.androidone.utils.RelativePath;
-import com.xuke.androidone.utils.XKLoggerUtils;
 import com.xuke.androidone.utils.compresshelper.CompressHelper;
 import com.xuke.androidone.view.widge.CircleImageView;
 import com.xuke.androidone.view.widge.ItemView;
@@ -46,9 +42,6 @@ import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static com.xuke.androidone.utils.RxBusCode.RXBUS_HEAD_IMAGE_URL_CODE;
 
@@ -85,9 +78,7 @@ public class AccountActivity extends BaseMVPCompatActivity<AccountContract.Accou
     private String accountNum;
     private PersonalPopupWindow popupWindow;
     private String password;
-    private Call<BaseResultBean<String>> uploadCall;
     private File file;
-    private Call<BaseResultBean<SearchUserInfo>> searchCall;
     private UserBean loginUser;
 
     public static void start(Context context) {
@@ -111,28 +102,10 @@ public class AccountActivity extends BaseMVPCompatActivity<AccountContract.Accou
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         accountNum = prefs.getString(Accounts.accountNum, "");
         password = prefs.getString(Accounts.password, "");
-        RxBus.get().register(this);
-
-        initview();
-    }
-
-    private void initview() {
         loginUser = GreenDaoManager.getInstance().getLoginUser(accountNum);
-        if (loginUser != null) {
-            //头像
-            GlideManager.getInstance().loadImage(this, ivUserAvatar, RelativePath.toAbs(loginUser.getPicture_xd()), R.drawable.img_defout_man);
-            //昵称
-            itemUserName.setRightText(loginUser.getName());
-            //性别
-            itemUserSex.setRightText("1".equals(loginUser.getSex()) ? "女" : "0".equals(loginUser.getSex()) ? "男" : "未知");
-            //生日
-            itemUserBirth.setRightText(loginUser.getBirthday());
-            //手机号
-            itemUserPhone.setRightText(loginUser.getPhoneNum());
-            //签名
-            tvSign.setText(loginUser.getSign());
-        }
+        RxBus.get().register(this);
     }
+
 
     @Override
     public void initPopupView() {
@@ -176,11 +149,7 @@ public class AccountActivity extends BaseMVPCompatActivity<AccountContract.Accou
         //跳转到调用系统相机
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            //设置7.0中共享文件，分享路径定义在xml/file_paths.xml
-            //            intent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-            //            Uri contentUri = FileProvider.getUriForFile(mActivity, BuildConfig.APPLICATION_ID + "" +
-            //                    ".fileProvider", tempFile);
-            //            intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
+            //7.0  fileProvider
             ContentValues contentValues = new ContentValues(1);
             contentValues.put(MediaStore.Images.Media.DATA, tempFile.getAbsolutePath());
             Uri uri = this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
@@ -203,10 +172,27 @@ public class AccountActivity extends BaseMVPCompatActivity<AccountContract.Accou
         if (uri == null) {
             return;
         }
-        Intent intent = new Intent();
-        intent.setClass(mContext, HeadSettingActivity.class);
+        Intent intent = new Intent(mContext, HeadSettingActivity.class);
         intent.setData(uri);
         startActivity(intent);
+    }
+
+    @Override
+    public void refresh() {
+        if (loginUser != null) {
+            //头像
+            GlideManager.getInstance().loadImage(this, ivUserAvatar, RelativePath.toAbs(loginUser.getPicture_xd()), R.drawable.img_defout_man);
+            //昵称
+            itemUserName.setRightText(loginUser.getName());
+            //性别
+            itemUserSex.setRightText("1".equals(loginUser.getSex()) ? "女" : "0".equals(loginUser.getSex()) ? "男" : "未知");
+            //生日
+            itemUserBirth.setRightText(loginUser.getBirthday());
+            //手机号
+            itemUserPhone.setRightText(loginUser.getPhoneNum());
+            //签名
+            tvSign.setText(loginUser.getSign());
+        }
     }
 
     @OnClick({R.id.rl_photo, R.id.item_user_name, R.id.item_user_sex, R.id.item_user_birth, R.id.item_user_phone, R.id.item_user_sign, R.id.tv_sign})
@@ -247,61 +233,8 @@ public class AccountActivity extends BaseMVPCompatActivity<AccountContract.Accou
             return;
         }
         String cropImagePath = FileUtils.getRealFilePathFromUri(AppUtils.getContext(), uri);
-        XKLoggerUtils.e("xuke", cropImagePath);
         file = CompressHelper.getDefault(mContext).compressToFile(new File(cropImagePath));
-        uploadImage("avatar.jpg", file);
-    }
-
-    /**
-     * 上传头像.
-     */
-    private void uploadImage(String uploadFileName, File takeImageFile) {
-        uploadCall = RetrofitHelper.getInstance().uploadFile(accountNum, password, uploadFileName, takeImageFile);
-        uploadCall.enqueue(new Callback<BaseResultBean<String>>() {
-            @Override
-            public void onResponse(Call<BaseResultBean<String>> call, Response<BaseResultBean<String>> response) {
-                BaseResultBean<String> body = response.body();
-                if (body != null) {
-                    if (body.isSuccess()) {
-                        XKLoggerUtils.e("xuke", "" + body.getMsg());
-                        loadUserInfo();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BaseResultBean<String>> call, Throwable t) {
-                XKLoggerUtils.e("xuke", "" + t.getMessage());
-            }
-        });
-    }
-
-    /**
-     * 获取个人信息.
-     */
-    private void loadUserInfo() {
-        searchCall = RetrofitHelper.getInstance().searchInfo(accountNum);
-        searchCall.enqueue(new Callback<BaseResultBean<SearchUserInfo>>() {
-            @Override
-            public void onResponse(Call<BaseResultBean<SearchUserInfo>> call, Response<BaseResultBean<SearchUserInfo>> response) {
-                BaseResultBean baseResultEntity = response.body();
-                if (baseResultEntity != null && baseResultEntity.isSuccess()) {
-                    SearchUserInfo searchUserInfo = (SearchUserInfo) baseResultEntity.getObj();
-                    String picture_xd = searchUserInfo.getPicture_xd();
-                    if (loginUser != null) {
-                        loginUser.setPicture_xd(picture_xd);
-                        GreenDaoManager.getInstance().saveLoginUser(loginUser);
-                        initview();
-                    }
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BaseResultBean<SearchUserInfo>> call, Throwable t) {
-                XKLoggerUtils.e("xuke", "" + t.getMessage());
-            }
-        });
+        mPresenter.uploadImage(accountNum, password, "avatar.jpg", file);
     }
 
 

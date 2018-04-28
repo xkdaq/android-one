@@ -10,14 +10,24 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
+import com.xuke.androidone.api.RetrofitHelper;
 import com.xuke.androidone.contract.account.AccountContract;
+import com.xuke.androidone.dao.GreenDaoManager;
 import com.xuke.androidone.model.account.AccountModel;
+import com.xuke.androidone.model.bean.BaseResultBean;
+import com.xuke.androidone.model.bean.SearchUserInfo;
+import com.xuke.androidone.model.bean.login.UserBean;
 import com.xuke.androidone.utils.Accounts;
 import com.xuke.androidone.utils.XKLoggerUtils;
 import com.zyw.horrarndoo.sdk.utils.FileUtils;
 import com.zyw.horrarndoo.sdk.utils.MD5Utils;
+import com.zyw.horrarndoo.sdk.utils.ToastUtils;
 
 import java.io.File;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by xuke on 2018/4/27.
@@ -37,6 +47,8 @@ public class AccountPresenter extends AccountContract.AccountPresenter {
 
     private File tempFile;
     private Activity context;
+    private Call<BaseResultBean<String>> uploadCall;
+    private Call<BaseResultBean<SearchUserInfo>> searchCall;
 
     public AccountPresenter(Activity context) {
         this.context = context;
@@ -57,6 +69,7 @@ public class AccountPresenter extends AccountContract.AccountPresenter {
      */
     @Override
     public void onStart() {
+        mIView.refresh();
         mIView.initPopupView();
     }
 
@@ -129,17 +142,74 @@ public class AccountPresenter extends AccountContract.AccountPresenter {
             case REQUEST_CAMERA: //调用系统相机返回
                 if (resultCode == Activity.RESULT_OK) {
                     mIView.gotoHeadSettingActivity(Uri.fromFile(tempFile));
-                    XKLoggerUtils.e("xuke",Uri.fromFile(tempFile));
+                    XKLoggerUtils.e("xuke", Uri.fromFile(tempFile));
                 }
                 break;
             case REQUEST_PHOTO:  //调用系统相册返回
                 if (resultCode == Activity.RESULT_OK) {
                     Uri uri = intent.getData();
                     mIView.gotoHeadSettingActivity(uri);
-                    XKLoggerUtils.e("xuke",uri);
+                    XKLoggerUtils.e("xuke", uri);
                 }
                 break;
         }
+    }
+
+    /**
+     * 上传头像.
+     */
+    @Override
+    public void uploadImage(String accountNum, String password, String uploadFileName, File takeImageFile) {
+        uploadCall = RetrofitHelper.getInstance().uploadFile(accountNum, password, uploadFileName, takeImageFile);
+        uploadCall.enqueue(new Callback<BaseResultBean<String>>() {
+            @Override
+            public void onResponse(Call<BaseResultBean<String>> call, Response<BaseResultBean<String>> response) {
+                BaseResultBean<String> body = response.body();
+                if (body != null) {
+                    if (body.isSuccess()) {
+                        XKLoggerUtils.e("xuke", "" + body.getMsg());
+                        loadUserInfo(accountNum);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResultBean<String>> call, Throwable t) {
+                ToastUtils.showToast("" + t.getMessage());
+            }
+        });
+    }
+
+    /**
+     * 获取个人信息.
+     */
+    public void loadUserInfo(String accountNum) {
+        searchCall = RetrofitHelper.getInstance().searchInfo(accountNum);
+        searchCall.enqueue(new Callback<BaseResultBean<SearchUserInfo>>() {
+            @Override
+            public void onResponse(Call<BaseResultBean<SearchUserInfo>> call, Response<BaseResultBean<SearchUserInfo>> response) {
+                BaseResultBean baseResultEntity = response.body();
+                if (baseResultEntity != null) {
+                    if (baseResultEntity.isSuccess()) {
+                        SearchUserInfo searchUserInfo = (SearchUserInfo) baseResultEntity.getObj();
+                        String picture_xd = searchUserInfo.getPicture_xd();
+                        UserBean loginUser = GreenDaoManager.getInstance().getLoginUser(accountNum);
+                        if (loginUser != null) {
+                            loginUser.setPicture_xd(picture_xd);
+                            GreenDaoManager.getInstance().saveLoginUser(loginUser);
+                            mIView.refresh();
+                        }
+                    } else {
+                        ToastUtils.showToast("" + baseResultEntity.getMsg());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResultBean<SearchUserInfo>> call, Throwable t) {
+                ToastUtils.showToast("" + t.getMessage());
+            }
+        });
     }
 
 
