@@ -1,5 +1,4 @@
 # obo [one by one]
-Android版本:仿one一个
 
 
 ###1.应用截图
