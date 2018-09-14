@@ -50,5 +50,3 @@
 - [蒲公英下载](https://www.pgyer.com/obyo)
 - [fir.im下载](http://fir.im/obyo)
 
-   ![](https://raw.githubusercontent.com/xkdaq/obo/master/image/update_obyo.png)
-
